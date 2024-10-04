@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Roboto";
+    src: url('fonts/Roboto-Regular.ttf') format('ttf');
+    font-style: normal;
+    font-weight: normal;
+}
+header{
+    
+}
+section{
+    background-color: blue;
+}
+.anuncios{
+    background-color: orange;
+}
+footer{
+    background-color: blue;
+}
