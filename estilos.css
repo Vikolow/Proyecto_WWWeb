@@ -4,6 +4,24 @@ body{
     justify-content: center;
     display: flex;
 }
+.superior{
+  margin-bottom: 5px;
+}
+.masServicios{
+  text-decoration: none;
+  color: black;
+}
+.lupaimg{
+  width:5%;
+}
+.logoimg{
+  border-radius: 50%;
+  width: 15%;
+}
+.perfilimg{
+  border-radius: 50%;
+  width: 10%;
+}
 .principal{
     display: flex;
     background-color: white;
