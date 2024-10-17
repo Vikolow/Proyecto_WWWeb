@@ -1,157 +1,228 @@
 body{
-    background-color: rgb(0, 120, 175);
-    align-items: center;
-    justify-content: center;
-    display: flex;
+  background-color: rgb(0, 120, 175);
+}
+.bodyLogin{
+  background-color: rgb(0, 120, 175);
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 .superior{
-  margin-bottom: 5px;
+margin-bottom: 1%;
+display: flex;
+justify-content: space-between;
+overflow:hidden;
 }
 .masServicios{
-  text-decoration: none;
-  color: black;
+text-decoration: none;
+color: black;
+align-items: center;
+justify-content: center;
+display:flex;
 }
-.lupaimg{
-  width:5%;
+.superior a{
+  display: inline-block;
+}
+.masServicios a {
+  margin: 0 3%; 
 }
 .logoimg{
-  border-radius: 50%;
-  width: 15%;
+border-radius: 50%;
+width: 15%;
+margin: 1%;
+display: block;
+max-width: 100%;
+height: auto;
 }
 .perfilimg{
-  border-radius: 50%;
-  width: 10%;
+border-radius: 50%;
+width: 10%;
+margin-left: auto;
+display: block;
+max-width: 100%;
+height: auto;
+}
+.lineaGris{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  color:black;
+}
+.filtros{
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  margin-bottom: 2%;
 }
 .principal{
-    display: flex;
-    background-color: white;
-    overflow: hidden;
-    border-radius: 15px;
-    text-align: center;
-    padding-top: 50px;
-    padding-left: 150px;
-    padding-right: 150px;
-    padding-bottom:100px;
-    margin-top: 50px;
+  display: flex;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 15px;
+  text-align: center;
+  padding-top: 50px;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-bottom:100px;
+  margin-top: 50px;
 }
+footer{
+  text-align: center;
+}
+
+.articuloPrincipal{
+margin-left: 2%;
+}
+
+.contenidoPrincipal {
+  display: flex; 
+  align-items: center;
+}
+.articulosSecundarios {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tituloArticuloPrincipal{
+  margin-left: 6%;
+  margin-bottom: 5%;
+}
+
+.imgArticulo{
+  width:20%;
+  margin-left: 2%;
+  margin-bottom: 1%;
+  border-radius: 3%;
+}
+
+.imgArticuloPrincipal{
+  width:30%;
+  margin-left: 6%;
+  margin-top: 1%;
+  border-radius: 2%;
+}
+
 .titulo{
-    color: black;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+  color: black;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .registro{
-    background-color: rgb(71, 157, 255);
-    color: white;
-    border-color: rgb(71, 157, 255);
-    border-radius: 7px;
-    padding: 15px;
-    padding-left: 50px;
-    padding-right: 50px;
-    font-size: 20px;
+  background-color: rgb(71, 157, 255);
+  color: white;
+  border-color: rgb(71, 157, 255);
+  border-radius: 7px;
+  padding: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 20px;
 }
-.wave-group {
-    position: relative;
-  }
-  
-  .wave-group .input {
-    font-size: 16px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    width: 200px;
-    border: none;
-    border-bottom: 1px solid #515151;
-    background: transparent;
-  }
-  
-  .wave-group .input:focus {
-    outline: none;
-  }
-  
-  .wave-group .label {
-    color: #999;
-    font-size: 18px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: 5px;
-    top: 10px;
-    display: flex;
-  }
-  
-  .wave-group .label-char {
-    transition: 0.2s ease all;
-    transition-delay: calc(var(--index) * .05s);
-  }
-  
-  .wave-group .input:focus ~ label .label-char,
-  .wave-group .input:valid ~ label .label-char {
-    transform: translateY(-20px);
-    font-size: 14px;
-    color: #5264AE;
-  }
-  
-  .wave-group .bar {
-    position: relative;
-    display: block;
-    width: 200px;
-  }
-  
-  .wave-group .bar:before,.wave-group .bar:after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 1px;
-    position: absolute;
-    background: #5264AE;
-    transition: 0.2s ease all;
-    -moz-transition: 0.2s ease all;
-    -webkit-transition: 0.2s ease all;
-  }
-  
-  .wave-group .bar:before {
-    left: 50%;
-  }
-  
-  .wave-group .bar:after {
-    right: 50%;
-  }
-  
-  .wave-group .input:focus ~ .bar:before,
-  .wave-group .input:focus ~ .bar:after {
-    width: 50%;
-  }
-  .inputDate {
-    border: 2px solid transparent;
-    width: 15em;
-    height: 2.5em;
-    padding-left: 0.8em;
-    outline: none;
-    overflow: hidden;
-    background-color: #f3f3f3;
-    border-radius: 10px;
-    transition: all 0.5s;
-  }
-  
-  .inputDate:hover,
-  .inputDate:focus {
-    border: 2px solid #4a9dec;
-    box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
-    background-color: white;
-  }
-  .textoFechaNacimiento{
-    color:gray;
-  }
 
-  .volver{
-    background-color: rgb(98, 179, 255);
-    border-radius: 10px;
-    padding: 3px;
-    padding-left: 6px;
-    padding-right: 6px;
-    color: white;
-    text-decoration: none;
-  }
-  .mostrarContrasena{
-    color:gray;
-    margin-right: 60px;
-  }
+.wave-group {
+  position: relative;
+}
+
+.wave-group .input {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+}
+
+.wave-group .input:focus {
+  outline: none;
+}
+
+.wave-group .label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  display: flex;
+}
+
+.wave-group .label-char {
+  transition: 0.2s ease all;
+  transition-delay: calc(var(--index) * .05s);
+}
+
+.wave-group .input:focus ~ label .label-char,
+.wave-group .input:valid ~ label .label-char {
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #5264AE;
+}
+
+.wave-group .bar {
+  position: relative;
+  display: block;
+  width: 200px;
+}
+
+.wave-group .bar:before,.wave-group .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.wave-group .bar:before {
+  left: 50%;
+}
+
+.wave-group .bar:after {
+  right: 50%;
+}
+
+.wave-group .input:focus ~ .bar:before,
+.wave-group .input:focus ~ .bar:after {
+  width: 50%;
+}
+.inputDate {
+  border: 2px solid transparent;
+  width: 15em;
+  height: 2.5em;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.inputDate:hover,
+.inputDate:focus {
+  border: 2px solid #4a9dec;
+  box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+  background-color: white;
+}
+
+
+.textoFechaNacimiento{
+  color:gray;
+}
+
+.volver{
+  background-color: rgb(98, 179, 255);
+  border-radius: 10px;
+  padding: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  color: white;
+  text-decoration: none;
+}
+.mostrarContrasena{
+  color:gray;
+  margin-right: 60px;
+}
