@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS Usuarios (
 );
 
 CREATE TABLE IF NOT EXISTS Categorias (
-    id_cat INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_cat VARCHAR(100) NOT NULL
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_categoria VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Articulos (
@@ -27,14 +27,14 @@ CREATE TABLE IF NOT EXISTS Articulos (
     contenido TEXT NOT NULL,
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_categoria INT,
-    id_autor INT,
-    FOREIGN KEY (id_categoria) REFERENCES Categorias(id_cat),
-    FOREIGN KEY (id_autor) REFERENCES Usuarios(id_usuario)
+    id_usuario INT,
+    FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
 );
 
 CREATE TABLE IF NOT EXISTS Etiquetas (
     id_etiqueta INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_etiqueta VARCHAR(100) NOT NULL
+    nombre_etiqueta VARCHAR(100) 
 );
 
 -- Tabla intermedia para Artículos y Etiquetas
@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS Comentarios (
     FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo),
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
 );
-
-CREATE TABLE IF NOT EXISTS Pertenece (
+-- Tabla intermedia para la relacion de articulos-categorias
+CREATE TABLE IF NOT EXISTS roles-usuarios (
     id_usuario INT,
     id_rol INT,
     PRIMARY KEY (id_usuario, id_rol),
@@ -64,10 +64,11 @@ CREATE TABLE IF NOT EXISTS Pertenece (
     FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
 );
 
--- Tabla intermedia para la relación Favoritos
+-- Tabla intermedia para la relación favoritos,articulos y usuarios
 CREATE TABLE IF NOT EXISTS Favoritos (
     id_usuario INT,
     id_articulo INT,
     PRIMARY KEY (id_usuario, id_articulo),
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
     FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo)
+
