@@ -1,3 +1,7 @@
+-- Sentencias para crear y usar , marcel hay que modificar tu php y quitarlas para cargarla desde un solo archivo
+CREATE DATABASE IF NOT EXISTS IPN;
+USE IPN;
+
 CREATE TABLE IF NOT EXISTS Roles (
     id_rol INT PRIMARY KEY AUTO_INCREMENT,
     nombre_rol VARCHAR(50) NOT NULL
