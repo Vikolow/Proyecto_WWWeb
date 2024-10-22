@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     fecha_nacimiento DATE,
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     biografia TEXT,
+    foto BLOB,
     FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
 );
 
@@ -32,6 +33,7 @@ CREATE TABLE IF NOT EXISTS Articulos (
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_categoria INT,
     id_usuario INT,
+    foto BLOB,
     FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria),
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
 );
@@ -60,7 +62,7 @@ CREATE TABLE IF NOT EXISTS Comentarios (
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
 );
 -- Tabla intermedia para la relacion de articulos-categorias
-CREATE TABLE IF NOT EXISTS roles-usuarios (
+CREATE TABLE IF NOT EXISTS roles_usuarios (
     id_usuario INT,
     id_rol INT,
     PRIMARY KEY (id_usuario, id_rol),
