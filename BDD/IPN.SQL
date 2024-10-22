@@ -77,4 +77,4 @@ CREATE TABLE IF NOT EXISTS Favoritos (
     PRIMARY KEY (id_usuario, id_articulo),
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
     FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo)
-
+);
