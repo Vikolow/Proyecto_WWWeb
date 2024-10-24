@@ -10,6 +10,18 @@
     } else {
         echo "Error creando la base de datos: " . mysqli_error($conn);
     }
+   //Creamos la sentencia para crear la tabla de roles
+   $sql_roles = "CREATE TABLE IF NOT EXISTS Roles (
+    id_rol INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_rol VARCHAR(50) NOT NULL
+    );";
+    $resultado_roles=mysqli_query($conn,$sql_roles);
+    if ($resultado_roles)
+    {
+        echo "Tabla Roles creada con exito \n";
+    } else {
+        echo "Error creando la tabla: " . mysqli_error($conn);
+    }
 
 
     //Creamos la sentencia para crear la tabla de usuarios
@@ -23,7 +35,8 @@
         fecha_nacimiento DATE,
         fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         biografia TEXT,
-        foto varchar(255) -- Cambio reciente , anteriormente BLOB
+        foto varchar(255), 
+        FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
         );";
 
         $Resultado_usuarios= mysqli_query($conn, $sql_usuarios);
@@ -36,6 +49,21 @@
         {
             echo "Error creando la tabla: " . mysqli_error($conn);
         }
+
+
+    //Creamos la sentencia para crear la tabla de categorias
+    $sql_categorias="CREATE TABLE IF NOT EXISTS Categorias (
+        id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+        nombre_categoria VARCHAR(100) NOT NULL
+    );";
+    $resultado_categorias=mysqli_query($conn,$sql_categorias);
+    if ($resultado_categorias)
+    {
+        echo "Tabla Categorias creada con exito \n";
+    } else {
+        echo "Error creando la tabla: " . mysqli_error($conn);
+    }
+
     //Creamos la sentencia para crear la tabla de Articulos
     $sql_Articulos = "CREATE TABLE IF NOT EXISTS Articulos (
         id_articulo INT AUTO_INCREMENT PRIMARY KEY, 
@@ -61,33 +89,7 @@
             echo "Error creando la tabla: " . mysqli_error($conn);
         }
     
-    //Creamos la sentencia para crear la tabla de roles
-    $sql_roles = "CREATE TABLE IF NOT EXISTS Roles (
-        id_rol INT PRIMARY KEY AUTO_INCREMENT,
-        nombre_rol VARCHAR(50) NOT NULL
-    );";
-    $resultado_roles=mysqli_query($conn,$sql_roles);
-    if ($resultado_roles)
-    {
-        echo "Tabla Roles creada con exito \n";
-    } else {
-        echo "Error creando la tabla: " . mysqli_error($conn);
-    }
-
-
-    //Creamos la sentencia para crear la tabla de categorias
-    $sql_categorias="CREATE TABLE IF NOT EXISTS Categorias (
-        id_categoria INT PRIMARY KEY AUTO_INCREMENT,
-        nombre_categoria VARCHAR(100) NOT NULL
-    );";
-    $resultado_categorias=mysqli_query($conn,$sql_categorias);
-    if ($resultado_categorias)
-    {
-        echo "Tabla Categorias creada con exito \n";
-    } else {
-        echo "Error creando la tabla: " . mysqli_error($conn);
-    }
-
+ 
 
     //Creamos la sentencia para crear la tabla de etiquetas
     $sql_etiquetas="CREATE TABLE IF NOT EXISTS Etiquetas (
