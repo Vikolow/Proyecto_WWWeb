@@ -1,15 +1,6 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-
-    // Crea la conexión al SGBD
-    $conn = mysqli_connect($servername, $username, $password);
-
-    // Comprueba si la conexión se ha establecido
-    if (!$conn) {
-        die("Conexion fallida: " . mysqli_connect_error());
-    }
+  //Llama la función que establece la conexión con la base de datos.
+    include ("conexion.php");
 
     // Aquí solo llegamos si la conexión se ha establecido, entonces se crea la tabla IAW
     //Almacena la sentencia en la variable $sql y la ejecuta
@@ -20,10 +11,6 @@
         echo "Error creando la base de datos: " . mysqli_error($conn);
     }
 
-	mysqli_close($conn);
-
-    //Llama la función que establece la conexión con la base de datos.
-    include ("conexion.php");
 
     //Creamos la sentencia para crear la tabla de usuarios
     $sql_usuarios = "CREATE TABLE IF NOT EXISTS Usuarios (
@@ -36,7 +23,7 @@
         fecha_nacimiento DATE,
         fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         biografia TEXT,
-        foto BLOB
+        foto varchar(255) -- Cambio reciente , anteriormente BLOB
         );";
 
         $Resultado_usuarios= mysqli_query($conn, $sql_usuarios);
@@ -63,7 +50,7 @@
         FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
         );";
 
-        $Resultado_articulos= mysqli_query($conn, $sql_usuarios);
+        $Resultado_articulos= mysqli_query($conn, $sql_Articulos);
     
         if ($Resultado_articulos)
         {
