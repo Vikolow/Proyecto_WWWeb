@@ -1,7 +1,29 @@
 <?php
-  //Llama la función que establece la conexión con la base de datos.
-    include ("conexion.php");
 
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+// Creamos la conexion y seleccionamos la base de datos
+$conn = mysqli_connect($servername, $username, $password);
+// Check connection
+if (!$conn) {
+    die("Conexion fallida: " . mysqli_connect_error());
+}
+
+
+
+
+// Crear la base de datos si no existe
+$sql = "CREATE DATABASE IF NOT EXISTS IPN";
+if (mysqli_query($conn, $sql)) {
+    echo "Base de datos creada con exito \n";
+} else {
+    die("Error creando la base de datos: " . mysqli_error($conn));
+}
+
+//Llama la función que establece la conexión con la base de datos.
+include ("conexion.php");
    //Creamos la sentencia para crear la tabla de roles
    $sql_roles = "CREATE TABLE IF NOT EXISTS Roles (
     id_rol INT PRIMARY KEY AUTO_INCREMENT,
