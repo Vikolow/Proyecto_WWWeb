@@ -2,14 +2,6 @@
   //Llama la función que establece la conexión con la base de datos.
     include ("conexion.php");
 
-    // Aquí solo llegamos si la conexión se ha establecido, entonces se crea la tabla IAW
-    //Almacena la sentencia en la variable $sql y la ejecuta
-    $sql = "CREATE DATABASE IF NOT EXISTS IPN";
-    if (mysqli_query($conn, $sql)) {
-        echo "Base de datos creada con exito \n";
-    } else {
-        echo "Error creando la base de datos: " . mysqli_error($conn);
-    }
    //Creamos la sentencia para crear la tabla de roles
    $sql_roles = "CREATE TABLE IF NOT EXISTS Roles (
     id_rol INT PRIMARY KEY AUTO_INCREMENT,
