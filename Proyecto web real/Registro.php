@@ -23,24 +23,33 @@
     $Alta_contraseña=$_REQUEST['contraseña'];
     $Alta_Fecha_Nac=$_REQUEST['Fecha_Nac'];
 
-    //Creamos la sentencia para añadir un nuevo usuario
-    $Request_Alta = "INSERT INTO usuarios (nombre, apellidos, email, password, fecha_nacimiento)
-    VALUES ('$Alta_nombre','$Alta_apellidos','$Alta_email','$Alta_contraseña','$Alta_Fecha_Nac'); ";
+    // Preparamos la consulta para comprobar si existe el correo y encapsulamos la consulta
+    $consulta_correo= "SELECT * FROM Usuarios WHERE email=? ";
+    $stmt= mysqli_prepare($conn,$consulta_correo);
+    mysqli_stmt_bind_param($stmt,"s",$Alta_email);
+    mysqli_stmt_execute($stmt);
+    $resultado=mysqli_stmt_get_result($stmt);
 
-    //Antes de crear el usuario, realizaremos una consulta para ver si existe un usuario con el mismo correo
-    $consulta_correo = "SELECT * FROM usuarios WHERE email = '$Alta_email' ;";
-    $Resultado_consulta_correo = mysqli_query($conn, $consulta_correo);
-
-    //Compara el numero de filas que ha enviado la bas de datos
-    if(mysqli_num_rows($Resultado_consulta_correo) <= 0){
-      //En caso de que no exista ninguna contraseña igual en la base de datos, creamos al usuario y redirigimos al usuario al login
-      mysqli_query($conn, $Request_Alta);
-      header("Location: MainPage.php");
-       
+    //Comprueba que el numero de resultados es mayor a 0
+    if(mysqli_num_rows($resultado)>0){
+      header("Location: PaginaError.php");  
     }else{
-      //En caso de encontrar algun usuario con el mismo correo se reiniciará la pagina y se mostrará un mensaje para el usuario
-      header("Location: PaginaError.php");
+       //Creamos la sentencia para añadir un nuevo usuario
+    $Request_Alta = "INSERT INTO usuarios (nombre, apellidos, email, password, fecha_nacimiento)
+    VALUES (?,?,?,?,?); ";
+
+    //Sentencia para insertar encapsulada
+    $stmt_insertar=mysqli_prepare($conn,$Request_Alta);
+    mysqli_stmt_bind_param($stmt_insertar,"sssss",$Alta_nombre,$Alta_apellidos,$Alta_email,$Alta_contraseña,$Alta_Fecha_Nac);
+
+    
+    if (mysqli_stmt_execute($stmt_insertar)){
+      header("Location: MainPage.php");
+    }else{
+      header("Location: PaginaError2.php");
     }
+    }
+    mysqli_close($conn);
 
   }else{
 
