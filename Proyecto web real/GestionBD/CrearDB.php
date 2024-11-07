@@ -49,8 +49,7 @@ include ("conexion.php");
         fecha_nacimiento DATE,
         fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         biografia TEXT,
-        foto varchar(255), 
-        FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
+        FOREIGN KEY (id_rol) REFERENCES Roles(id_rol) ON UPDATE CASCADE ON DELETE CASCADE
         );";
 
         $Resultado_usuarios= mysqli_query($conn, $sql_usuarios);
@@ -88,8 +87,8 @@ include ("conexion.php");
         fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         id_usuario int,
         id_categoria int,
-        FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria),
-        FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+        FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE
         );";
 
         $Resultado_articulos= mysqli_query($conn, $sql_Articulos);
@@ -105,37 +104,6 @@ include ("conexion.php");
     
  
 
-    //Creamos la sentencia para crear la tabla de etiquetas
-    $sql_etiquetas="CREATE TABLE IF NOT EXISTS Etiquetas (
-        id_etiqueta INT PRIMARY KEY AUTO_INCREMENT,
-        nombre_etiqueta VARCHAR(100) 
-    );";
-    $resultado_etiquetas=mysqli_query($conn,$sql_etiquetas);
-    if ($resultado_etiquetas)
-    {
-        echo "Tabla Etiquetas creada con exito \n";
-    } else {
-        echo "Error creando la tabla: " . mysqli_error($conn);
-    }
-
-
-    //Creamos la sentencia para crear la tabla de articulos-etiquetas
-    $sql_articulos_etiquetas="CREATE TABLE IF NOT EXISTS Articulo_Etiqueta (
-        id_articulo INT,
-        id_etiqueta INT,
-        PRIMARY KEY (id_articulo, id_etiqueta),
-        FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo),
-        FOREIGN KEY (id_etiqueta) REFERENCES Etiquetas(id_etiqueta)
-    );";
-    $resultado_articulos_etiquetas=mysqli_query($conn,$sql_articulos_etiquetas);
-    if ($resultado_articulos_etiquetas)
-    {
-        echo "Tabla Articulos-Etiquetas creada con exito \n"; 
-    } else {
-        echo "Error creando la tabla: " . mysqli_error($conn);
-    }
-
-
     //Creamos la sentencia para crear la tabla de Comentarios
     $sql_comentarios="CREATE TABLE IF NOT EXISTS Comentarios (
         id_comentario INT PRIMARY KEY AUTO_INCREMENT,
@@ -143,8 +111,8 @@ include ("conexion.php");
         id_usuario INT,
         comentario TEXT NOT NULL,
         fecha_comentario TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo),
-        FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+        FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo) ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE
     );";
     $resultado_comentarios=mysqli_query($conn,$sql_comentarios);
     if ($resultado_comentarios)
@@ -159,8 +127,8 @@ include ("conexion.php");
         id_usuario INT,
         id_articulo INT,
         PRIMARY KEY (id_usuario, id_articulo),
-        FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
-        FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo)
+        FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo) ON UPDATE CASCADE ON DELETE CASCADE
     );";
     $resultado_favoritos=mysqli_query($conn,$sql_favoritos);
     if ($resultado_favoritos)
