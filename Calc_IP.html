@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="CSS/estilos.css">
 </head>
-<body class="body_herramientas">
+<body>
     <header>
-        <h1>Calculadora IP</h1>
+        <a href="herramientas.html" class="btn-back">Volver</a>
+        <div class="logo">
+            <a href="index.html" class="logo">
+                <img class="logoimg" src="img/Logo_IPN.png">
+            </a>
+        </div>
+        <a href="login.html" class="btn-login">
+            <img src="img/Perfil.png" alt="Login">
+        </a>
     </header>
-    
     <main>
-        <h2>Introduce tu dirección IP y máscara de subred</h2>
+        <div class="tituloCalc">
+            <h2 class="tituloHerramientas">Calculadora IP</h2>
+        </div>
+        <div class="tituloCalc">
+            <h3 class="subtituloHerramientas">Introduce tu dirección IP y máscara de subred</h3>
+        </div>
+        <div class="tituloCalc">
         <label for="ip">Dirección IP:</label>
-        <input type="text" id="ip" placeholder="Introduce una dirección IP (ej. 192.168.1.1)">
-    
+        <input type="text" id="ip" placeholder="Introduce una dirección IP">
+        </div>
+        <div class="tituloCalc">
         <label for="subnet">Máscara de Subred:</label>
         <select id="subnet">
             <option value="255.255.255.0">/24 (255.255.255.0)</option>
@@ -24,13 +38,18 @@
         </select>
     
         <button class="calcular">Calcular</button>
+    </div>
+    <div class="tituloCalc">
         <div id="resultado-ip" class="result"></div>
-    
-        <nav>
-            <a href="Contraseñas.html">Generador de contaseñas </a>
-            <a href="Conversor_bin_hex.html">Conversor Binario/Hex</a>
-            <a href="index.html">Inicio</a>
-        </nav>
-<script src="js/index0.js"></script>
+    </div>
+        <div class="navHerramientas">    
+            <nav>
+                <a href="Contrasenas.html" class="btnNav">Generador de contaseñas</a>
+                <a href="Conversor_bin_hex.html" class="btnNav">Conversor Binario/Hex</a>
+                <a href="index.html" class="btnNav">Inicio</a>
+            </nav>
+            <script src="js/index0.js"></script>
+        </div>
+    </main>
 </body>
 </html>
