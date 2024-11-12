@@ -23,20 +23,21 @@ overflow:hidden;
   display: flex;
 }
 .masServicios{
-  width:5%;
+  width:110px;
   text-decoration: none;
-  color: black;
+  color: white;
   align-items: center;
   justify-content: center;
   display: flex;
-  margin-top: 2px;
-}
-.masServicios a{
   transition: transform 0.5s, font-weight 0.5s;
+  background-color: rgb(0, 120, 175);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-right: 0.5%;
 }
-.masServicios:hover a{
-  transform: scale(1.1); /* Aumenta el tamaño */
-  font-weight: bold; /* Cambia a negrita */
+.masServicios:hover{
+  transform: scale(1.1); 
+  font-weight: bold; 
 }
 .superior a{
   display: inline-block;
@@ -350,4 +351,140 @@ header {
 .botonesCategorias{
   margin-left: 8%;
   margin-bottom: 2%;
+}
+.tituloCalc{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1%;
+}
+.navHerramientas{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7%;
+}
+.navHerramientas nav a {
+  color: white;
+  text-decoration: none;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.leyenda{
+  height: 10%;
+  margin-top: 1%;
+  border: 1px solid rgb(138, 138, 138);
+  padding: 10px;
+  border-radius: 25px;
+  display: inline-block;
+}
+.btnNav{
+  background-color: #4a9dec;
+  padding: 5px;
+  border-radius: 15px;
+}
+.btnNav:hover {
+  background-color: #b8ddff;
+}
+.tituloPerfil{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1px;
+}
+.tituloPerfilLetra{
+  color: black;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-bottom: 2%;
+  font-size: 300%;
+}
+.perfilContainer {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 6%;
+  margin-bottom: 2%;
+}
+.infoPerfil {
+  text-align: left;
+  font-size: 100%;
+  color: black;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.cajaFotoPerfil{
+  display: flex;
+  align-items: center;
+}
+.fotoPerfil{
+  width: 10%;
+  border-radius: 50%;
+  margin-right:3% ;
+}
+.favoritos {
+  text-align: left;
+  margin-left: 5%;
+  margin-top: 3%;
+}
+.cajaFavoritos {
+  gap: 2%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  margin-top: 2%;
+}
+.favorito-item {
+  text-align: center;
+}
+.tituloFavoritos {
+  font-size: 20px; 
+  margin-top: 5px; 
+  color: #333; 
+}
+.favorito {
+  border-radius: 10px;
+  width: 90%;
+}
+.botonesPerfil{
+  margin-left: 5%;
+}
+.botonPerfil{
+  border-radius: 10px;
+  color: white;
+  background-color: #4a9dec;
+  padding: 5px;
+  border: 0px;
+}
+.botonPerfil:hover {
+  background-color: #b8ddff;
+}
+.peticiones{
+  margin-left: 5%;
+}
+.btnPetis{
+  border-radius: 15px;
+  border: 0px;
+  padding: 6px;
+  background-color:#4a9dec;
+}
+.btnPetis:hover {
+  background-color: #b8ddff;
+}
+.btnPetisRechazo{
+  border-radius: 15px;
+  border: 0px;
+  padding: 6px;
+  background-color: rgb(230, 55, 55);
+}
+.btnPetisRechazo:hover {
+  background-color: rgb(233, 119, 119);
+}
+.tituloPagina{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#copiarBtn{
+  border-radius: 10px;
+  margin-top: 1%;
+  margin-left: 2px;
 }
