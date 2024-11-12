@@ -1,0 +1,741 @@
+/* Estilos de pagina principal */
+
+body{
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+img{
+  width:100%;
+}
+.bodyLogin{
+  background-color: rgb(0, 120, 175);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.superior{
+margin-bottom: 1%;
+display: flex;
+justify-content: space-between;
+overflow:hidden;
+}
+.masServicios{
+text-decoration: none;
+color: black;
+align-items: center;
+justify-content: center;
+display:flex;
+margin-top: 2px;
+transition: transform 0.5s, font-weigth 0.5s;
+}
+
+.masServicios:hover{
+  transform: scale(1.1); /* Aumenta el tamaño */
+  font-weight: bold; /* Cambia a negrita */
+}
+
+.superior a{
+  display: inline-block;
+}
+
+.perfilimg{
+border-radius: 50%;
+width: 10%;
+margin-left: auto;
+display: block;
+max-width: 100%;
+height: auto;
+}
+.filtros{
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  margin-bottom: 2%;
+}
+.principal{
+  display: flex;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 15px;
+  text-align: center;
+  padding-top: 50px;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-bottom:100px;
+  margin-top: 50px;
+}
+footer{
+  text-align: center;
+}
+
+.articuloPrincipal{
+margin-left: 2%;
+}
+
+.contenidoPrincipal {
+  display: flex; 
+  align-items: center;
+  margin-bottom: 3%;
+}
+
+.articulosSecundarios {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contenedorImagenTexto {
+  width: 20%;
+  margin-left: 2.5%;
+  margin-bottom: 25px;
+}
+
+.contenedorTexto{
+  margin-bottom: 15px;
+}
+
+.tituloArticuloPrincipal{
+  margin-left: 4%;
+}
+
+.imgArticulo{
+  width:90%;
+  margin-left: 2%;
+  margin-bottom: 1%;
+  border-radius: 3%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.imgArticuloPrincipal{
+  width:30%;
+  margin-left: 6%;
+  margin-top: 1%;
+  border-radius: 2%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.titulo{
+  color: black;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.abrazoBotones{
+  display: flex;
+}
+
+.registro{
+  background-color: rgb(71, 157, 255);
+  color: white;
+  border-color: rgb(71, 157, 255);
+  border-radius: 7px;
+  padding: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 20px;
+}
+
+.registro2{
+  background-color: rgb(201, 36, 36);
+  color: white;
+  border-color: rgb(201, 36, 36);
+  border-radius: 7px;
+  padding: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 20px;
+}
+
+.wave-group {
+  position: relative;
+}
+
+.wave-group .input {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+}
+
+.wave-group .input:focus {
+  outline: none;
+}
+
+.wave-group .label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  display: flex;
+}
+
+.wave-group .label-char {
+  transition: 0.2s ease all;
+  transition-delay: calc(var(--index) * .05s);
+}
+
+.wave-group .input:focus ~ label .label-char,
+.wave-group .input:valid ~ label .label-char {
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #5264AE;
+}
+
+.wave-group .bar {
+  position: relative;
+  display: block;
+  width: 200px;
+}
+
+.wave-group .bar:before,.wave-group .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.wave-group .bar:before {
+  left: 50%;
+}
+
+.wave-group .bar:after {
+  right: 50%;
+}
+
+.wave-group .input:focus ~ .bar:before,
+.wave-group .input:focus ~ .bar:after {
+  width: 50%;
+}
+
+.inputDate {
+  border: 2px solid transparent;
+  width: 15em;
+  height: 2.5em;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.inputDate:hover,
+.inputDate:focus {
+  border: 2px solid #4a9dec;
+  box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+  background-color: white;
+}
+
+.descripcion{
+  margin-left: 4%;
+}
+
+
+.textoFechaNacimiento{
+  color:gray;
+}
+
+.volver{
+  background-color: rgb(98, 179, 255);
+  border-radius: 10px;
+  padding: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  color: white;
+  text-decoration: none;
+}
+.mostrarContrasena{
+  color:gray;
+  margin-right: 60px;
+}
+.bodyHerramientas {
+  text-align: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Cambiado de center a flex-start */
+  color: white;
+  padding-top: 20px; /* Añade un poco de espacio en la parte superior si es necesario */
+}
+
+.logomedio {
+  width: 7%;
+  border-radius: 50%;
+  margin-bottom: 5%;
+  margin-left: 17%;
+}
+.image-links {
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+}
+
+.link-image {
+  width: 80%; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+  cursor: pointer;
+  border-radius: 5%;
+}
+.tituloHerramientas{
+  color: white;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-bottom: 10%;
+  font-size: 300%;
+}
+.back-button {
+  background-color: white; 
+  color: rgb(0, 120, 175); 
+  border: none; 
+  padding: 10px 15px; 
+  border-radius: 10%; 
+  text-decoration: none;
+  font-weight: bold; 
+  margin-bottom: 10%;
+}
+.login-image {
+  width: 15%; 
+  margin-bottom: 20%;
+}
+.headermain {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(0, 120, 175);
+  color: white;
+}
+
+.contenedorMasServicios{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.btn-back {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  color: rgb(0, 120, 175);
+  background-color: white;
+  padding: 7px;
+  border-radius: 12px;
+  display: inline-block;
+}
+.logo {
+  height: auto;
+  width:7%;
+}
+.logoimg{
+  border-radius: 50%;
+}
+.btn-login img {
+  width: 60px; 
+  height: auto;
+}
+
+.btn-back, .btn-login {
+  transition: transform 0.3s ease; /* Transición suave */
+}
+
+.btn-back:hover, .btn-login:hover {
+  transform: scale(1.1); /* Aumenta el tamaño al 110% */
+}
+.linea {
+  height: 2px; /* Altura de la línea */
+  width: 40%; /* Ajusta este valor para el ancho deseado */
+  background-color: rgb(87, 87, 87); /* Color de la línea */
+  margin: 10px auto; /* Espaciado superior e inferior y márgenes automáticos para centrar */
+}
+.tituloCategorias{
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-bottom: 5%;
+  font-size: 300%;
+  color: #363636;
+}
+.mainCategorias{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.textoArticuloPrincipal{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+/* Herramientas */
+
+.tituloCalc{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1%;
+}
+.navHerramientas{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7%;
+}
+.navHerramientas nav a {
+  color: white;
+  text-decoration: none;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.leyenda{
+  height: 10%;
+  margin-top: 1%;
+  border: 1px solid rgb(138, 138, 138);
+  padding: 10px;
+  border-radius: 25px;
+  display: inline-block;
+}
+.btnNav{
+  background-color: #4a9dec;
+  padding: 5px;
+  border-radius: 15px;
+}
+.btnNav:hover {
+  background-color: #b8ddff;
+}
+.tituloPerfil{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1px;
+}
+.tituloPerfilLetra{
+  color: black;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-bottom: 2%;
+  font-size: 300%;
+}
+.perfilContainer {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 6%;
+  margin-bottom: 2%;
+}
+.infoPerfil {
+  text-align: left;
+  font-size: 100%;
+  color: black;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.cajaFotoPerfil{
+  display: flex;
+  align-items: center;
+}
+.fotoPerfil{
+  width: 10%;
+  border-radius: 50%;
+  margin-right:3% ;
+}
+.favoritos {
+  text-align: left;
+  margin-left: 5%;
+  margin-top: 3%;
+}
+.cajaFavoritos {
+  gap: 2%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  margin-top: 2%;
+}
+.favorito-item {
+  text-align: center;
+}
+.tituloFavoritos {
+  font-size: 20px; 
+  margin-top: 5px; 
+  color: #333; 
+}
+.favorito {
+  border-radius: 10px;
+  width: 90%;
+}
+.botonesPerfil{
+  margin-left: 5%;
+}
+.botonPerfil{
+  border-radius: 10px;
+  color: white;
+  background-color: #4a9dec;
+  padding: 5px;
+  border: 0px;
+}
+.botonPerfil:hover {
+  background-color: #b8ddff;
+}
+.peticiones{
+  margin-left: 5%;
+}
+.btnPetis{
+  border-radius: 15px;
+  border: 0px;
+  padding: 6px;
+  background-color:#4a9dec;
+}
+.btnPetis:hover {
+  background-color: #b8ddff;
+}
+.btnPetisRechazo{
+  border-radius: 15px;
+  border: 0px;
+  padding: 6px;
+  background-color: rgb(230, 55, 55);
+}
+.btnPetisRechazo:hover {
+  background-color: rgb(233, 119, 119);
+}
+
+/* Estilos de Registro */
+
+.body_Registro{
+    background-color: rgb(0, 120, 175);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.principal{
+    display: flex;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+    padding-top: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-bottom:100px;
+    margin-top: 50px;
+}
+.titulo{
+    color: black;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+.registro{
+    background-color: rgb(71, 157, 255);
+    color: white;
+    border-color: rgb(71, 157, 255);
+    border-radius: 7px;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 20px;
+}
+.wave-group {
+    position: relative;
+  }
+  
+  .wave-group .input {
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 200px;
+    border: none;
+    border-bottom: 1px solid #515151;
+    background: transparent;
+  }
+  
+  .wave-group .input:focus {
+    outline: none;
+  }
+  
+  .wave-group .label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    display: flex;
+  }
+  
+  .wave-group .label-char {
+    transition: 0.2s ease all;
+    transition-delay: calc(var(--index) * .05s);
+  }
+  
+  .wave-group .input:focus ~ label .label-char,
+  .wave-group .input:valid ~ label .label-char {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #5264AE;
+  }
+  
+  .wave-group .bar {
+    position: relative;
+    display: block;
+    width: 200px;
+  }
+  
+  .wave-group .bar:before,.wave-group .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+  
+  .wave-group .bar:before {
+    left: 50%;
+  }
+  
+  .wave-group .bar:after {
+    right: 50%;
+  }
+  
+  .wave-group .input:focus ~ .bar:before,
+  .wave-group .input:focus ~ .bar:after {
+    width: 50%;
+  }
+  .inputDate {
+    border: 2px solid transparent;
+    width: 15em;
+    height: 2.5em;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: hidden;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    transition: all 0.5s;
+  }
+  
+  .inputDate:hover,
+  .inputDate:focus {
+    border: 2px solid #4a9dec;
+    box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+    background-color: white;
+  }
+  .textoFechaNacimiento{
+    color:gray;
+  }
+
+  .volver{
+    background-color: rgb(98, 179, 255);
+    border-radius: 10px;
+    padding: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: white;
+    text-decoration: none;
+  }
+  .mostrarContrasena{
+    color:gray;
+    margin-right: 60px;
+  }
+
+  .botonesCategorias{
+    margin-left: 8%;
+    margin-bottom: 2%;
+    display: flex;
+  }
+
+  .form_categorias{
+    margin-right: 15px;
+  }
+
+  /* Estilos Login Emergente*/ 
+
+  .cajaInvocador{
+    display: flex;
+    justify-content: center;
+  }
+
+.login{
+    width: 30%;
+    background-color: rgb(255, 255, 0);
+}
+
+.cortina{
+    background-color: #5264AE;
+    opacity: 94%;
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.cajaCortina{
+    position: relative;
+  }
+
+.centrar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .principal2{
+    display: flex;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+    width: 20%;
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos de Pagina de ERROR */
+.BodyError{
+  background-color: #5264AE;
+}
+
+.ErrorContenedor{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+}
+.errormarcel{
+  text-align: center;
+}
+
+/* Articulo Especifico */
+
+.tituloArticulos{
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-bottom: 2%;
+  font-size: 300%;
+  color: #363636;
+}
+
+.imgArticuloPrincipalImpreso{
+  width:30%;
+  margin-top: 1%;
+  border-radius: 2%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.contenidoArticulo{
+  width: 75%;
+  font-size: larger;
+}
