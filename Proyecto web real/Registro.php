@@ -36,14 +36,13 @@
     }else{
       //Crear hash de contraseña 
       $contraseña_hash=password_hash($Alta_contraseña, PASSWORD_ARGON2ID);
-
-       //Creamos la sentencia para añadir un nuevo usuario
       $Request_Alta = "INSERT INTO usuarios (nombre, apellidos, email, password, fecha_nacimiento)
-      VALUES ('$Alta_nombre','$Alta_apellidos','$Alta_email','$Alta_contraseña','$Alta_Fecha_Nac'); ";
+                 VALUES (?, ?, ?, ?, ?)";
 
-    //Sentencia para insertar encapsulada
-    $stmt_insertar=mysqli_prepare($conn,$Request_Alta);
-    mysqli_stmt_bind_param($stmt_insertar,"sssssi",$Alta_nombre,$Alta_apellidos,$Alta_email,$contraseña_hash,$Alta_Fecha_Nac);
+      // Preparar y enlazar parámetros
+      $stmt_insertar = mysqli_prepare($conn, $Request_Alta);
+      mysqli_stmt_bind_param($stmt_insertar, "sssss", $Alta_nombre, $Alta_apellidos, $Alta_email, $contraseña_hash, $Alta_Fecha_Nac);
+
 
     //Comprobacion de ejecucion de consulta encapsulada
     if (mysqli_stmt_execute($stmt_insertar)){
@@ -65,8 +64,7 @@
       header("Location: MainPage.php");
     }else{
       //En caso de encontrar algun usuario con el mismo correo se reiniciará la pagina y se mostrará un mensaje para el usuario
-        //Aqui falta el mensaje para el user chicos
-      header("Location: MainPage.php");
+      
     }  
 
   }else{
