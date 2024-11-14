@@ -7,6 +7,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Panel escribir articulo para usuarios autores
   + Backend pagina favoritos
   + Boton de mostrar contraseña en el login no funciona (js)
+  + Nan de la calculadora IP (arreglar)
 ### Funcionalidad adicional (si hay tiempo)
   + Pagina recuperar contraseña
   + buscador de articulos
