@@ -21,11 +21,9 @@
         // Si no está definida, asignarle el valor predeterminado de 1
         $_SESSION['sesionActiva'] = 0;
     }
-    
 
     //En caso de que se pulse el boton de enviar se ejecutará este codigo
     if (isset($_REQUEST['Registrar'])){
-
         //Incluimos la función de conexión con la base de datos
         include("GestionBD/conexion.php");
 
@@ -33,34 +31,31 @@
         $Registro_correo=$_REQUEST['correo'];
         $Registro_contraseña=$_REQUEST['contra'];
 
-        //Creamos la consulta, la lanzamos a la base de datos y la almacenamos como un array asociativo
-        $consulta_login = "SELECT * FROM usuarios WHERE email = '$Registro_correo' ;";
-        $Resultado_consulta_correo = mysqli_query($conn, $consulta_login);
-        $row=mysqli_fetch_assoc($Resultado_consulta_correo);
+        //Creamos la consulta , en esta iteracion encapsulada para prevenir inyecciones SQL
+        $consulta_login = "SELECT * FROM usuarios WHERE email = ?";
+        $stmt=mysqli_prepare($conn,$consulta_login);
+        mysqli_stmt_bind_param($stmt,"s",$Registro_correo);
+        mysqli_stmt_execute($stmt);
+        $Resultado_consulta_correo =mysqli_stmt_get_result($stmt);
 
         //comprobamos que existe una cuenta asociada a el correo introducido
-        if(mysqli_num_rows($Resultado_consulta_correo) > 0) {
-
-            //comprobamos que la contraseña introducida concuerda con la insertada por el usuario
-            if($row['password']==$Registro_contraseña){
-
-            //Si el usuario y contraseña son correctos, se creara la sesión y se mostrará el catálogo de productos.
-
-                //Creamos la sesion.
+        if(mysqli_num_rows($Resultado_consulta_correo) > 0) {    
+            $row=mysqli_fetch_assoc($Resultado_consulta_correo);
+            
+            //Verificar el hash de contraseña mediante password_verify
+            if(password_verify($Registro_contraseña,$row['password'])){
+                //Si el usuario y contraseña son correctos, se creara la sesión y se mostrará el catálogo de productos.
                 $_SESSION['id_usuario'] = $row['id_usuario'];
                 $_SESSION['clase'] = $row['id_rol'];
-
                 //Asignamos que la sesión está activa
                 $_SESSION['sesionActiva'] = 1;
-
                 //Refresca la pagina
                 header("Location: MainPage.php");
-
             }else{
                 //Si la contraseña introducida no es la correcta, se informará de esto al usuario.
                 ?>
                     <script>
-                        alert('Error: La contraseña no existe');
+                        alert('Error: Las credenciales no son correctas');
                     </script>
                 <?php
             }
@@ -68,7 +63,7 @@
             //caso de que no exista el usuario, se mostrará un mensaje indicado que el usuario no existe.
             ?>
             <script>
-                alert('Error: El usuario no existe');
+                alert('Error: Las credenciales no son correctas');
             </script>
             <?php
 
@@ -87,17 +82,19 @@
 
     //Función que elimina un articulo
     if (isset($_REQUEST['id_elimart'])){
-
         //Recojemos el dato que envia el boton para conocer el id del articulo a eliminar
         $id_art = $_REQUEST['id_elimart'];
+        //Creamos la sentencia SQL con encapsulacion
+        $elimArticulo= "DELETE FROM articulos WHERE id_articulo = ? ;";
+        $stmt = mysqli_prepare($conn, $elimArticulo);
+        mysqli_stmt_bind_param($stmt, "i", $id_art);
 
-        //Creamos la sentencia SQL
-        $elimArticulo= "DELETE FROM articulos WHERE id_articulo = '$id_art' ;";
-
-        //Ejecutamos la sentencia
-        if(mysqli_query($conn, $elimArticulo)){
-            ?> <script> alert("El articulo ha sido eliminado") </script>; <?php
-        }
+        // Condicional mejorado para comprobar tambien si la consulta fue exitosa en la db
+        if (mysqli_stmt_execute($stmt) && mysqli_stmt_affected_rows($stmt) > 0) {
+            echo "<script>alert('El artículo ha sido eliminado');</script>";
+        } else {
+            echo "<script>alert('Error: No se pudo eliminar el artículo o no existe');</script>";
+        }        
     }
 
 ?>
@@ -105,10 +102,12 @@
     <div class="cajaInvocador">
 
         <?php 
-            // Mostrar información de la sesión
+             if (!isset($_SESSION['sesionActiva'])){
+            // Mostrar información de la sesión cuando hay sesion
             echo "ID_Usuario: " . $_SESSION['id_usuario'] . "<br>";
             echo "tipo de usuario: " . $_SESSION['clase'] . "<br>";
             //session_destroy();
+             }
         ?>
 
     </div>
@@ -235,7 +234,7 @@
             //Incluimos la pagina de conexión con la base de datos.
             include("GestionBD/conexion.php");
             
-            //Creamos la sentencia de la base de datos y la ejecuta.
+            //Creamos la sentencia encapsulada
             $Consulta_Articulos="SELECT * FROM articulos $categoriaActiva ;";
             $Resultado_Articulos=mysqli_query($conn,$Consulta_Articulos);
 
