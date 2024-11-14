@@ -43,13 +43,13 @@
 
     //Sentencia para insertar encapsulada
     $stmt_insertar=mysqli_prepare($conn,$Request_Alta);
-    mysqli_stmt_bind_param($stmt_insertar,"sssssi",$Alta_nombre,$Alta_apellidos,$Alta_email,$contraseña_hash,$Alta_Fecha_Nac)
+    mysqli_stmt_bind_param($stmt_insertar,"sssssi",$Alta_nombre,$Alta_apellidos,$Alta_email,$contraseña_hash,$Alta_Fecha_Nac);
 
     //Comprobacion de ejecucion de consulta encapsulada
     if (mysqli_stmt_execute($stmt_insertar)){
-      header("Location: MainPage.php")
+      header("Location: MainPage.php");
     }else{
-      echo"El Login ha fallao "
+      echo"El Login ha fallado inesperadamente ";
     }
     }
 
@@ -65,7 +65,8 @@
       header("Location: MainPage.php");
     }else{
       //En caso de encontrar algun usuario con el mismo correo se reiniciará la pagina y se mostrará un mensaje para el usuario
-      
+        //Aqui falta el mensaje para el user chicos
+      header("Location: MainPage.php");
     }  
 
   }else{
