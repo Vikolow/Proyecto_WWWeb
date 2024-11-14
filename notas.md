@@ -10,4 +10,4 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
 ### Funcionalidad adicional (si hay tiempo)
   + Pagina recuperar contraseña
   + buscador de articulos
-  + 
+  + tags
