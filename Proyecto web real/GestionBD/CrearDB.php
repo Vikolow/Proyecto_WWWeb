@@ -44,7 +44,7 @@ include ("conexion.php");
         nombre VARCHAR(50) NOT NULL,
         apellidos VARCHAR(50),
         email VARCHAR(80) NOT NULL,
-        password VARCHAR(50) NOT NULL,
+        password VARCHAR(255) NOT NULL,
         id_rol INT DEFAULT 1,
         fecha_nacimiento DATE,
         fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
