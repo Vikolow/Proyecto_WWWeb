@@ -2,6 +2,8 @@
 //Generador de contraseñas 
 ////////////////////////////////////////////////////////////////////////
 document.getElementById('gen').addEventListener("click",GenerarContraseñas)
+document.getElementById('copiarBtn').addEventListener("click", copiarAlPortapapeles);
+
 function GenerarContraseñas() {
     const longitud= parseInt(document.getElementById('longitud').value);
     if (longitud > 50) {
@@ -26,4 +28,16 @@ function GenerarContraseñas() {
     }
 
     document.getElementById('resultado').innerText = contraseña;
+    document.getElementById('copiarBtn').style.display = 'inline-block';
+}
+
+function copiarAlPortapapeles() {
+    const contraseña = document.getElementById('resultado').innerText;
+    if (contraseña) {
+        navigator.clipboard.writeText(contraseña).then(function() {
+            alert("¡Contraseña copiada!");
+        }).catch(function(error) {
+            alert("Error al copiar: " + error);
+        });
+    }
 }
