@@ -8,6 +8,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Tema rutas de las imagenes (bd,php) !--> Muy importante
   + Pagina recuperar contraseña
   + Añadir el index con redireccion a mainpage.php
+  + Agregar control y seguridad a las paginas de funcionalidad de usuario autor y admin
 ### Funcionalidad adicional (si hay tiempo)
   + buscador de articulos
   + tags
