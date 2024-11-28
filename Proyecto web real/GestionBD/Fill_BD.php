@@ -1,5 +1,6 @@
 <?php
- include ("conexion.php");
+include("conexion.php");
+
 // INSERTAR EN ROLES
 $sql_roles = "INSERT INTO Roles (nombre_rol) VALUES 
               ('Usuario'),
@@ -12,17 +13,17 @@ if (!$Resultado_roles) {
     die("Error al insertar roles: " . mysqli_error($conn));
 }
 
-// INSERTAR EN USUARIOS
+// INSERTAR EN USUARIOS (con contraseñas encriptadas)
 $sql_usuarios = "INSERT INTO Usuarios (nombre, apellidos, email, password, id_rol, fecha_nacimiento, biografia) VALUES 
-              ('Juan', 'Pérez López', 'juan.perez@gmail.com', 'pass1234', 1, '1990-05-14', 'Administrador principal del sitio.'),
-              ('Ana', 'Martínez Díaz', 'ana.martinez@gmail.com', 'password', 2, '1985-07-22', 'Editora con gran experiencia.'),
-              ('Carlos', 'García Ríos', 'carlos.garcia@gmail.com', '12345678', 3, '1992-09-10', 'Autor especializado en tecnología.'),
-              ('Lucía', 'Hernández Torres', 'lucia.hernandez@gmail.com', 'secret123', 1, '1998-03-28', 'Lectora apasionada por la ciencia.'),
-              ('David', 'Rodríguez Ramírez', 'david.rodriguez@gmail.com', 'davidpass', 3, '1993-12-03', 'Autor de deportes y entretenimiento.'),
-              ('Elena', 'Cruz Mora', 'elena.cruz@gmail.com', 'elena123', 2, '1987-01-17', 'Editora de la sección de ciencia.'),
-              ('Pedro', 'Sánchez Vargas', 'pedro.sanchez@gmail.com', 'pedropass', 1, '1995-04-11', 'Lector frecuente de temas de cultura.'),
-              ('Sofía', 'López Fernández', 'sofia.lopez@gmail.com', 'sofialopez', 1, '1991-06-25', 'Administrador secundario y experto en ciencia.'),
-              ('Mario', 'Gómez Ruiz', 'mario.gomez@gmail.com', 'mariogomez', 3, '1989-10-18', 'Autor especializado en innovación tecnológica.')";
+              ('Juan', 'Pérez López', 'juan.perez@gmail.com', '".password_hash('pass1234', PASSWORD_ARGON2ID)."', 2, '1990-05-14', 'Administrador principal del sitio.'),
+              ('Ana', 'Martínez Díaz', 'ana.martinez@gmail.com', '".password_hash('password', PASSWORD_ARGON2ID)."', 3, '1985-07-22', 'Editora con gran experiencia.'),
+              ('Carlos', 'García Ríos', 'carlos.garcia@gmail.com', '".password_hash('12345678', PASSWORD_ARGON2ID)."', 1, '1992-09-10', 'Autor especializado en tecnología.'),
+              ('Lucía', 'Hernández Torres', 'lucia.hernandez@gmail.com', '".password_hash('secret123', PASSWORD_ARGON2ID)."', 1, '1998-03-28', 'Lectora apasionada por la ciencia.'),
+              ('David', 'Rodríguez Ramírez', 'david.rodriguez@gmail.com', '".password_hash('davidpass', PASSWORD_ARGON2ID)."', 3, '1993-12-03', 'Autor de deportes y entretenimiento.'),
+              ('Elena', 'Cruz Mora', 'elena.cruz@gmail.com', '".password_hash('elena123', PASSWORD_ARGON2ID)."', 2, '1987-01-17', 'Editora de la sección de ciencia.'),
+              ('Pedro', 'Sánchez Vargas', 'pedro.sanchez@gmail.com', '".password_hash('pedropass', PASSWORD_ARGON2ID)."', 1, '1995-04-11', 'Lector frecuente de temas de cultura.'),
+              ('Sofía', 'López Fernández', 'sofia.lopez@gmail.com', '".password_hash('sofialopez', PASSWORD_ARGON2ID)."', 1, '1991-06-25', 'Administrador secundario y experto en ciencia.'),
+              ('Mario', 'Gómez Ruiz', 'mario.gomez@gmail.com', '".password_hash('mariogomez', PASSWORD_ARGON2ID)."', 3, '1989-10-18', 'Autor especializado en innovación tecnológica.')";
 $Resultado_usuarios = mysqli_query($conn, $sql_usuarios);
 
 // Verificar inserción de usuarios
@@ -70,7 +71,6 @@ if (!$Resultado_articulos) {
     die("Error al insertar artículos: " . mysqli_error($conn));
 }
 
-
 // Insertar comentarios
 $insert_comentarios = "
 INSERT INTO Comentarios (id_articulo, id_usuario, comentario) VALUES
@@ -81,16 +81,6 @@ INSERT INTO Comentarios (id_articulo, id_usuario, comentario) VALUES
 mysqli_query($conn, $insert_comentarios);
 
 
-// Insertar favoritos
-$insert_favoritos = "
-INSERT INTO Favoritos (id_usuario, id_articulo) VALUES
-(3, 1),
-(2, 2),
-(1, 3);
-";
-mysqli_query($conn, $insert_favoritos);
-
 // Cerrar la conexión
 mysqli_close($conn);
-
 ?>
