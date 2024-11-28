@@ -2,8 +2,8 @@
  include ("conexion.php");
 // INSERTAR EN ROLES
 $sql_roles = "INSERT INTO Roles (nombre_rol) VALUES 
-              ('Administrador'),
               ('Usuario'),
+              ('Administrador'),
               ('Autor')";
 $Resultado_roles = mysqli_query($conn, $sql_roles);
 
@@ -48,22 +48,47 @@ if (!$Resultado_categorias) {
 }
 
 // INSERTAR EN ARTICULOS
-$sql_articulos = "INSERT INTO Articulos (titulo, contenido, id_categoria) VALUES 
-              ('Las últimas tendencias en tecnología', 'Contenido sobre nuevas tendencias tecnológicas...', 1),
-              ('Descubrimientos científicos del año', 'Contenido sobre ciencia y descubrimientos...', 2),
-              ('El impacto de la cultura pop', 'Contenido sobre cultura y entretenimiento...', 3),
-              ('Novedades en el fútbol mundial', 'Contenido sobre fútbol y deportes...', 1),
-              ('Cómo la tecnología está cambiando la salud', 'Innovaciones tecnológicas en la salud...', 2),
-              ('Las elecciones del año y su impacto', 'Análisis político de las elecciones recientes...', 3),
-              ('Economía global en tiempos de crisis', 'La economía global enfrenta desafíos...', 1),
-              ('Los secretos detrás de los éxitos del cine', 'Estudio de películas y éxitos recientes...', 2),
-              ('Nuevas fronteras en la inteligencia artificial', 'Desarrollo de IA y su impacto...', 2)"; 
+$sql_articulos = "
+INSERT INTO Articulos (titulo, descripcion, contenido, id_usuario, id_categoria) VALUES
+('La revolución de la inteligencia artificial', 
+ 'Un análisis sobre los avances recientes.', 
+ 'La inteligencia artificial ha cambiado la manera en que interactuamos con la tecnología. Desde asistentes virtuales hasta sistemas de recomendación, su impacto es innegable AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIUDAAAAA', 
+ 2, 1),
+('Exploración espacial: el próximo paso', 
+ 'Qué nos espera en la conquista del espacio.', 
+ 'La exploración espacial siempre ha sido una de las fronteras más emocionantes de la ciencia moderna. Con proyectos como Artemis y SpaceX liderando el camino..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIUDAAAAAAAAAAAAAAAAAAAAA.', 
+ 2, 2),
+('El arte digital en el siglo XXI', 
+ 'Cómo la tecnología redefine el arte.', 
+ 'Con la llegada del arte digital, los artistas tienen herramientas y oportunidades sin precedentes. Desde animaciones hasta realidad aumentada, las posibilidades son infinitas..AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYUDAAAA.', 
+ 1, 3);
+";
 $Resultado_articulos = mysqli_query($conn, $sql_articulos);
 
 // Verificar inserción de artículos
 if (!$Resultado_articulos) {
     die("Error al insertar artículos: " . mysqli_error($conn));
 }
+
+
+// Insertar comentarios
+$insert_comentarios = "
+INSERT INTO Comentarios (id_articulo, id_usuario, comentario) VALUES
+(1, 3, 'Un artículo muy interesante, gracias por compartirlo.'),
+(2, 1, 'Estoy de acuerdo, la exploración espacial es crucial para el futuro.'),
+(3, 2, 'El arte digital es realmente fascinante.');
+";
+mysqli_query($conn, $insert_comentarios);
+
+
+// Insertar favoritos
+$insert_favoritos = "
+INSERT INTO Favoritos (id_usuario, id_articulo) VALUES
+(3, 1),
+(2, 2),
+(1, 3);
+";
+mysqli_query($conn, $insert_favoritos);
 
 // Cerrar la conexión
 mysqli_close($conn);
