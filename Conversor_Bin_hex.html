@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Conversor binario a hexadecimal</title>
     <link rel="stylesheet" href="CSS/estilos.css">
 </head>
 <body class="body_herramientas">
-    <header>
+    <header class="headermain">
         <a href="herramientas.html" class="btn-back">Volver</a>
         <div class="logo">
             <a href="index.html" class="logo">
@@ -25,7 +25,14 @@
     <div class="tituloCalc">
         <label for="numero-decimal">Número Decimal:</label>
         <input type="number" id="numero-decimal" placeholder="Introduce un número decimal">
-        <button class="convertir">Convertir</button>
+    <button class="convertir">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <div class="front">
+            <span>Convertir</span>
+        </div>
+    </button>
+
     </div>
     <div class="tituloCalc">
         <div id="resultado-conversion" class="result"></div>
@@ -38,6 +45,9 @@
         </nav>
     </div>
 </main>
+<footer>
+    <p class="copyright">© 2024 Informática para novatos. Todos los derechos reservados.</p>
+</footer>
     <script src="js/index3.js"></script>
 </body>
 </html>
