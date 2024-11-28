@@ -6,7 +6,7 @@
     <title>Iniciar sesión</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="bodyLogin">
     <div class="principal">
         <form method="post" action="">
             <h1 class="titulo">Identifícate</h1>
@@ -34,16 +34,24 @@
                 <span class="label-char" style="--index: 3">t</span>
                 <span class="label-char" style="--index: 4">r</span>
                 <span class="label-char" style="--index: 5">a</span>
-                <span class="label-char" style="--index: 5">s</span>
-                <span class="label-char" style="--index: 5">e</span>
-                <span class="label-char" style="--index: 5">ñ</span>
-                <span class="label-char" style="--index: 5">a</span>
+                <span class="label-char" style="--index: 6">s</span>
+                <span class="label-char" style="--index: 7">e</span>
+                <span class="label-char" style="--index: 8">ñ</span>
+                <span class="label-char" style="--index: 9">a</span>
               </label>
             </div>
             <br>
             <div class="mostrarContrasena">
               <input type="checkbox" id="checkboxMostrarContrasena"> Mostrar contraseña <!-- La función de este checkbox se hace en javascript -->
             </div>
+            <script>
+              const checkbox = document.getElementById('checkboxMostrarContrasena');
+              const passwordInput = document.getElementById('password');
+          
+              checkbox.addEventListener('change', () => {
+                  passwordInput.type = checkbox.checked ? 'text' : 'password';
+              });
+          </script>
             <br><br>
             <input type="submit" class="registro" value="Entrar">
             <br><br>
