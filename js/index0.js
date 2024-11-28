@@ -2,26 +2,26 @@ document.querySelector(".calcular").addEventListener("click", calcularIP);
 
 // Función para convertir de decimal a binario
 function decimalABinario(octeto) {
-    return parseInt(octeto).toString(2).padStart(8, '0');
+    return octeto.toString(2).padStart(8, '0');
 }
 
 // Función para convertir de binario a decimal
 function binarioADecimal(binario) {
-    return parseInt(binario, 2).toString();
+    return parseInt(binario, 2);
 }
 
 // Función para hacer un AND bit a bit
 function operacionAND(ip, mascara) {
-    return ip.map((octeto, i) => decimalABinario(octeto & mascara[i]));
+    return ip.map((octeto, i) => octeto & mascara[i]);
 }
 
 // Función para calcular la dirección de red y broadcast
 function calcularRedYBroadcast(ip, mascara) {
     const direccionRed = operacionAND(ip, mascara);
-    const direccionBroadcast = direccionRed.map((octeto, i) => binarioADecimal(octeto | (~mascara[i] & 255)));
+    const direccionBroadcast = direccionRed.map((octeto, i) => octeto | (~mascara[i] & 255));
     
     return {
-        red: direccionRed.map(binarioADecimal).join('.'),
+        red: direccionRed.join('.'),
         broadcast: direccionBroadcast.join('.'),
     };
 }
