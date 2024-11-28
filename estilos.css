@@ -278,6 +278,9 @@ margin-left: 2%;
   color: white;
   text-decoration: none;
 }
+.volver:hover{
+  background-color: rgb(174, 216, 255);
+}
 .mostrarContrasena{
   color:gray;
   margin-right: 60px;
@@ -691,6 +694,9 @@ margin-left: 2%;
     padding-left: 50px;
     padding-right: 50px;
     font-size: 20px;
+}
+.registro:hover{
+  transform: scale(1.05); 
 }
 .wave-group {
     position: relative;
