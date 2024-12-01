@@ -181,7 +181,13 @@
 
         echo"<article class='articuloPrincipal'>";
             echo"<div class='contenidoPrincipal'>";
-                echo"<img class='imgArticuloPrincipal' src='img/articulo.jpg' alt=''/>";
+
+                if(!file_exists($Array_ArticuloPrincipal['foto'])){
+                    echo "<img class='imgArticuloPrincipal' src='img/articulo.jpg' alt=''/>";
+                }else{
+                    echo "<img class='imgArticuloPrincipal' src='{$Array_ArticuloPrincipal['foto']}' alt=''/>";
+                }
+
                 echo"<div class='textoArticuloPrincipal'>";
                     echo"<h1 class='tituloArticuloPrincipal'> {$Array_ArticuloPrincipal['titulo']} </h1>";
                     echo"<h5 class='descripcion'> {$Array_ArticuloPrincipal['descripcion']} </h5>";
