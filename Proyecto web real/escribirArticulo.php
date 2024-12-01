@@ -1,15 +1,12 @@
 <?php
 session_start();
 include("GestionBD/conexion.php");
-//Esto debe estar sin comentar y funcionando correctamente
-// Verificar si el usuario está autenticado y tiene el rol de autor
-//if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'autor') {
-//    header("Location: login.php");
-//    exit;
-//}
-//GOHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//FODAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-//Mirar opcion de creaar nueva categoria??
+
+// Comprobar que el usuario esté autenticado y tenga el rol adecuado
+// if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'autor') {
+//     header("Location: login.php");
+//     exit;
+// }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Recoge los datos del formulario
@@ -43,8 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
 
-        // Renombrar archivo y moverlo a la carpeta de destino
-        $nuevoNombre = uniqid() . "_" . basename($_FILES['imagen']['name']);
+        // Renombrar archivo usando sólo el timestamp
+        $extension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+        $nuevoNombre = date("Ymd_His") . "." . $extension; // Ejemplo: 20241128_143012.jpg
         $rutaDestino = $directorioSubida . $nuevoNombre;
 
         if (!move_uploaded_file($rutaTemporal, $rutaDestino)) {
