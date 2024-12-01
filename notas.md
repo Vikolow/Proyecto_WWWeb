@@ -26,6 +26,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + [+] Boton de mostrar contraseña en el login no funciona (js)
   + [+] Panel solicitar autor para usuarios normales
   + [+] Panel aceptar como autor para usuarios admin
-  + 
+
+  + Que el articulo principal sea dinamico con el id de articulo 0
   + Añadir el index con redireccion a mainpage.php //M
   + Que se pueda eliminar una rticulo y este elimine todas las claves oraneas e información de otras tablas sin dar error.
