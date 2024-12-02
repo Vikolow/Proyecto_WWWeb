@@ -10,6 +10,8 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Pagina recuperar contraseña (testing requerido)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //I
   + encapsular consultas pertientes ene el resto de archivos , especialmente articulo.php // TODOS
   + ARRGLAR EL FAKIN INPUT DE LA PWD en mainpage
+  + Makear el tema de recuperar pwd , que un usuario introduzca mail
+  + Actualizar heade de conversor para que sea descriptivo
   + Agrgear un insert con id_articulo=0 en el fillbd o replantear esta opcion!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
 ### Funcionalidad adicional (si hay tiempo)
