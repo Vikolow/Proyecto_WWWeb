@@ -9,6 +9,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Demo y explicacion //I
   + Pagina recuperar contraseña (testing requerido)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //I
   + encapsular consultas pertientes ene el resto de archivos , especialmente articulo.php // TODOS
+  + ARRGLAR EL FAKIN INPUT DE LA PWD
     
 ### Funcionalidad adicional (si hay tiempo)
   + buscador de articulos
