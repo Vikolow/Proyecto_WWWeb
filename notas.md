@@ -13,6 +13,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Makear el tema de recuperar pwd , que un usuario introduzca mail
   + Actualizar heade de conversor para que sea descriptivo
   + Agrgear un insert con id_articulo=0 en el fillbd o replantear esta opcion!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  + Diseño: Centrar art principal con el resto , añadir header de articulo destacado
     
 ### Funcionalidad adicional (si hay tiempo)
   + buscador de articulos
