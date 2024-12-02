@@ -1,32 +1,3 @@
-<?php
-include ("GestionBD/conexion.php");
-session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $correo = $_POST["email"];
-    $newPassword = $_POST["newpassword"];
-
-    $sql = "SELECT * FROM usuarios WHERE email = '$correo'";
-    $resultado = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($resultado) > 0)
-    {
-        $_SESSION['correo'] = $correo;
-
-        $newPasswordHash = password_hash($newPassword, PASSWORD_ARGON2ID);
-        $stmt = $conn->prepare("UPDATE usuarios SET password = ? WHERE email = ?");
-        $stmt->bind_param("ss", $newPasswordHash, $correo);
-        $stmt->execute();
-
-        header("Location: restablecer.php");
-        exit();
-    }
-    else
-    {
-        echo "<h2> No se ha encontrado ningún usuario existente <h2>";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -36,12 +7,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body class="bodyLogin">
+
+    <?php
+
+        //Conectamos con la base de datos
+        include("GestionBD/conexion.php");
+
+        //Recojemos el 
+        if (isset($_REQUEST['enviar'])){
+            $usuario_correo = $_REQUEST['correo'];
+            $Consulta_existe_correo = "SELECT * FROM usuarios WHERE email = '$usuario_correo'";
+            $Resultado_usuario_correo=mysqli_query($conn,$Consulta_existe_correo);
+            
+            //en caso de que el usuario exista crea una sentencia para cambiar la contraseña
+            if(mysqli_num_rows($Resultado_usuario_correo) > 0){
+
+                //Recojemos y encriptamos la variable
+                $nueva_contrasena= $_REQUEST['newpassword'];
+                $newPasswordHash = password_hash($nueva_contrasena, PASSWORD_ARGON2ID);
+
+                //sentencia que cambia la contraseña
+                $sentencia_actualizar_contrasena = "UPDATE usuarios SET password = '$newPasswordHash' WHERE email = '$usuario_correo'";
+                $Resultado_usuario_correo=mysqli_query($conn,$sentencia_actualizar_contrasena);
+
+            }else{
+
+                //En caso de que el usuario no exista se envia un mensaje
+                ?>
+                    <script> alert('Error: No existe este usuario')</script>
+                <?php
+            }
+
+        }
+
+    ?>
+
     <div class="principal">
         <form method="post" action="">
             <h1 class="titulo">Recuperar<br>contraseña</h1>
             <br>
             <div class="wave-group">
-                <input required="true" type="email" id="correo" class="input">
+                <input required="true" type="email" name="correo" class="input">
                 <span class="bar"></span>
                 <label class="label">
                   <span class="label-char" style="--index: 0">C</span>
@@ -76,9 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </label>
             </div>
             <br>
+
             <div class="mostrarContrasena">
               <input type="checkbox" id="checkboxMostrarContrasena"> Mostrar contraseña <!-- La función de este checkbox se hace en javascript -->
             </div>
+
             <script>
               const checkbox = document.getElementById('checkboxMostrarContrasena');
               const passwordInput = document.getElementById('password');
@@ -88,9 +96,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               });
             </script>
             <br><br>
-            <input type="submit" class="registro" value="Enviar">
+            <input type="submit" name="enviar" class="registro" value="Enviar">
             <br><br>
-            <a href="login.html" class="volver"> Volver</a>
+            <a href="MainPage.php" class="volver"> Volver</a>
         </form>
         </div>
 </body>
