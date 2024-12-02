@@ -51,7 +51,7 @@ function login(){
         <br><br>
         <a href="Registro.php" class="volver"> Registro </a>
         <br><br>
-        <a href="MainPage.php" class="volver"> Recuperar contraseña </a>
+        <a href="RecContra.php" class="volver"> Recuperar Contraseña </a>
         <br><br>
         <a href="MainPage.php" class="volver"> Volver </a>
     </form>
