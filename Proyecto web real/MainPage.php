@@ -174,10 +174,15 @@
         <!-- Caja de articulo principal -->
 
         <?php
+        $id_articulo = 0; // ID del artículo principal
 
-        $Consulta_ArticuloPrincipal="SELECT * FROM articulos WHERE id_articulo = 0 ;";
-        $Resultado_ArticuloPrincipal=mysqli_query($conn,$Consulta_ArticuloPrincipal);
-        $Array_ArticuloPrincipal=mysqli_fetch_assoc($Resultado_ArticuloPrincipal);
+        //Consulta encapsulada para obtener el articulo principal
+        $Consulta_ArticuloPrincipal = "SELECT * FROM articulos WHERE id_articulo = ?";
+        $stmt_articulo_principal = mysqli_prepare($conn, $Consulta_ArticuloPrincipal);
+        mysqli_stmt_bind_param($stmt_articulo_principal, "i", $id_articulo);
+        mysqli_stmt_execute($stmt_articulo_principal);
+        $Resultado_ArticuloPrincipal = mysqli_stmt_get_result($stmt_articulo_principal);
+        $Array_ArticuloPrincipal = mysqli_fetch_assoc($Resultado_ArticuloPrincipal);
 
         echo"<article class='articuloPrincipal'>";
             echo"<div class='contenidoPrincipal'>";
@@ -254,7 +259,9 @@
             
             //Creamos la sentencia encapsulada
             $Consulta_Articulos="SELECT * FROM articulos $categoriaActiva ;";
-            $Resultado_Articulos=mysqli_query($conn,$Consulta_Articulos);
+            $stmt_articulos=mysqli_prepare($conn, $Consulta_Articulos);
+            mysqli_stmt_execute($stmt_articulos);
+            $Resultado_Articulos= mysqli_stmt_get_result($stmt_articulos);
 
             //Condicional que realiza la función mientras la consulta debuelva un resultado.
             if(mysqli_num_rows($Resultado_Articulos)>0){
