@@ -45,18 +45,21 @@
 
             <!-- Rellena los datos del usuario -->
                 <?php
-
                 //Incluimos la función que realiza la conexión con la base de datos
                 include("GestionBD/conexion.php");
 
                 //Iniciamos otra vez la sesión
                 session_start();
 
-                //Ya funciona
-                $consulta_datos = "SELECT * FROM usuarios WHERE id_usuario = {$_SESSION['id_usuario']};";
-                $Resultado_consulta_datos = mysqli_query($conn,$consulta_datos);
+                //Consulta geeral que saca los datos del usuario
+                $consulta_datos = "SELECT * FROM usuarios WHERE id_usuario = ?";
+                $stmt = mysqli_prepare($conn, $consulta_datos);
+                mysqli_stmt_bind_param($stmt, "i", $_SESSION['id_usuario']);
+                mysqli_stmt_execute($stmt);
+                $Resultado_consulta_datos = mysqli_stmt_get_result($stmt);
                 $Resultado_Array=mysqli_fetch_assoc($Resultado_consulta_datos);
-
+                
+                //Mostrar los datos del usuario 
                 echo"<p>• Nombre: {$Resultado_Array['nombre']}</p>";
                 echo"<p>• Apellidos: {$Resultado_Array['apellidos']}</p>";
                 echo"<p>• Correo: {$Resultado_Array['email']}</p>";
@@ -64,17 +67,11 @@
                 echo"<p>• Solicitudes Activas: {$Resultado_Array['peticion_activa']}</p>";
 
                 //Dependiendo del rol muestra un mensaje
-
-                //Consulta geeral que saca los datos del usuario
-                $Solicitud_usuario = "SELECT * FROM usuarios WHERE id_usuario = {$_SESSION['id_usuario']};";
-                $Resultado_Solicitud_usuario = mysqli_query($conn,$Solicitud_usuario);
-                $Resultado_Array_usuario=mysqli_fetch_assoc($Resultado_Solicitud_usuario);
-
-                switch ($Resultado_Array_usuario['id_rol']) {
-                    case 1:
+                switch ($Resultado_Array['id_rol']) {
+                    case 2:
                         echo "<p>• Rol: Administrador </p>";
                         break;
-                    case 2:
+                    case 1:
                         echo "<p>• Rol: Usuario </p>";
                         break;
                     case 3:
@@ -106,21 +103,21 @@
                 if (isset($_REQUEST['botonPerfil'])){
 
                     //En caso de que el usuario ya tenga privilegios de administrador envia un mensaje
-                    if($Resultado_Array_usuario['id_rol'] == 1 || 3){
+                    if($Resultado_Array['id_rol'] == 2 || 3){
 
                         ?>
                         <script> alert('Error: Ya posees el rol de autor o superior')</script>
                         <?php
 
                         //En caso de que el usuario no tenga más tokens de solicitud:
-                    }else if($Resultado_Array_usuario['numero_peticiones_restante'] < 1){
+                    }else if($Resultado_Array['numero_peticiones_restante'] < 1){
 
                         ?>
                         <script> alert('Error: No te quedan tokens para realizar la petición')</script>
                         <?php
 
                         //En caso de que el usuario ya tenga una solicitud activa:
-                    }else if($Resultado_Array_usuario['peticion_activa'] == 1){
+                    }else if($Resultado_Array['peticion_activa'] == 1){
 
                         ?>
                         <script> alert('Error: Ya tienes una solicitud activa')</script>
@@ -129,26 +126,35 @@
                     }else{
 
                         //Creamos la solicitud que activa una petición y resta un token
-                        $EnviarSolicitud = "UPDATE usuarios SET peticion_activa = 1, numero_peticiones_restante = numero_peticiones_restante - 1 WHERE id_usuario = {$_SESSION['id_usuario']}";
-                        mysqli_query($conn,$EnviarSolicitud);
-
-                        header("Location: perfil.php");
+                        $consulta_actualizar = "UPDATE usuarios SET peticion_activa = 1, numero_peticiones_restante = numero_peticiones_restante - 1 WHERE id_usuario = ?";
+                        $stmt = mysqli_prepare($conn, $consulta_actualizar);
+                        mysqli_stmt_bind_param($stmt, "i", $_SESSION['id_usuario']);
+                        
+                        // Ejecutamos la consulta y verificamos el resultado
+                        if (mysqli_stmt_execute($stmt)) {
+                            header("Location: perfil.php");
+                            exit();
+                        } else {
+                            echo "<p>Error al enviar la solicitud.</p>";
+                        }
+                    
+                        // Liberamos el statement
+                        mysqli_stmt_close($stmt);
                     }
                 }
             ?>
 
         </div>
-
-
         <div class="peticiones">
-                
             <?php
                 //Creamos la solicitud que recojerá todas las peticiones de los usuarios 
                 $Sentencia_Solicitudes = "SELECT * FROM usuarios WHERE peticion_activa = 1 ;";
-                $Resultado_Solicitud = mysqli_query($conn,$Sentencia_Solicitudes);
+                $stmt = mysqli_prepare($conn, $Sentencia_Solicitudes);
+                mysqli_stmt_execute($stmt);
+                $Resultado_Solicitud = mysqli_stmt_get_result($stmt);
 
                 //Si hay usuarios que tengan solicitudes continua, si no hay solicitudes no hacer nada
-                if(mysqli_num_rows($Resultado_Solicitud)>0 && $Resultado_Array_usuario['id_rol'] == 1){
+                if(mysqli_num_rows($Resultado_Solicitud)>0 && $Resultado_Array['id_rol'] == 3){
 
                     //Por cada usuario pinta un registro 
                     while($Resultado_Peticiones=mysqli_fetch_assoc($Resultado_Solicitud)){
@@ -173,26 +179,27 @@
                     }
                 }
 
-
                 //Función que deniega la solicitud
-
                 if(isset($_REQUEST['btnPetisRechazo'])){
 
                     //Sentencia que actualiza el usuario denegando la solicitud
                     $id_usuario_solicitud_rechazar = $_REQUEST['btnPetisRechazo'];
-                    $sentencia_eliminar_peticion_activa = "UPDATE usuarios SET peticion_activa = 0 WHERE id_usuario = $id_usuario_solicitud_rechazar";
-                    $Resultado_eliminar_peticion = mysqli_query($conn,$sentencia_eliminar_peticion_activa);
+                    $sentencia_eliminar_peticion_activa = "UPDATE usuarios SET peticion_activa = 0 WHERE id_usuario = ?";
+                    $stmt_rechazo = mysqli_prepare($conn, $sentencia_eliminar_peticion_activa);
+                    mysqli_stmt_bind_param($stmt_rechazo, "i", $id_usuario_solicitud_rechazar);
+                    mysqli_stmt_execute($stmt_rechazo);
                     header("Location: perfil.php");
                 }
 
                 //Función que acepta la solicitud
-
                 if(isset($_REQUEST['btnPetis'])){
 
                     //Sentencia que actualiza el usuario aceptando la solicitud
                     $id_usuario_solicitud_aceptar = $_REQUEST['btnPetis'];
-                    $sentencia_aceptar_peticion_activa = "UPDATE usuarios SET peticion_activa = 0, id_rol = 3 WHERE id_usuario = $id_usuario_solicitud_aceptar";
-                    $Resultado_aceptar_peticion = mysqli_query($conn,$sentencia_aceptar_peticion_activa);
+                    $sentencia_aceptar_peticion_activa = "UPDATE usuarios SET peticion_activa = 0, id_rol = 3 WHERE id_usuario = ?";
+                    $stmt_aceptar = mysqli_prepare($conn, $sentencia_aceptar_peticion_activa);
+                    mysqli_stmt_bind_param($stmt_aceptar, "i", $id_usuario_solicitud_aceptar);
+                    mysqli_stmt_execute($stmt_aceptar);
                     header("Location: perfil.php");
                 }
 
@@ -207,18 +214,23 @@
                 <?php
 
                 //Realiza un request a la base de datos para ver si el usuario tiene algún archivo favorito
-                $favoritos_usuario = "SELECT * FROM favoritos WHERE id_usuario = {$_SESSION['id_usuario']} ";
-                $resultado_favoritos_usuario = mysqli_query($conn,$favoritos_usuario);
+                $favoritos_usuario = "SELECT * FROM favoritos WHERE id_usuario = ?";
+                $stmt_favoritos = mysqli_prepare($conn, $favoritos_usuario);
+                mysqli_stmt_bind_param($stmt_favoritos, "i", $_SESSION['id_usuario']);
+                mysqli_stmt_execute($stmt_favoritos);
+                $resultado_favoritos_usuario = mysqli_stmt_get_result($stmt_favoritos);
 
                 //En caso de que el usuario tenga articulos favoritos, los imprime de forma dinamica
 
                 if(mysqli_num_rows($resultado_favoritos_usuario)>0){
 
                     while($Array_id_favoritos=mysqli_fetch_assoc($resultado_favoritos_usuario)){
-
-                    $info_articulos = "SELECT * FROM articulos WHERE id_articulo = {$Array_id_favoritos['id_articulo']}";
-                    $esquizo = mysqli_query($conn,$info_articulos);
-                    $Array_articulo_fav=mysqli_fetch_assoc($esquizo);
+                        $info_articulos = "SELECT * FROM articulos WHERE id_articulo = ?";
+                        $stmt_articulos = mysqli_prepare($conn, $info_articulos);
+                        mysqli_stmt_bind_param($stmt_articulos, "i", $Array_id_favoritos['id_articulo']);
+                        mysqli_stmt_execute($stmt_articulos);
+                        $esquizo = mysqli_stmt_get_result($stmt_articulos);
+                        $Array_articulo_fav = mysqli_fetch_assoc($esquizo);
 
                     echo"<div class='favorito-item'>";
 
