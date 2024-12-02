@@ -14,10 +14,13 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Actualizar heade de conversor para que sea descriptivo
   + Agrgear un insert con id_articulo=0 en el fillbd o replantear esta opcion!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   + Diseño: Centrar art principal con el resto , añadir header de articulo destacado
+  + Centrar los enlaces en mainpage
+  + Redimension de las imagenes
     
 ### Funcionalidad adicional (si hay tiempo)
   + buscador de articulos
   + tags
+  + Dinamismo de las categorias
 
 ### Resuelto
   + Backend pagina favoritos
