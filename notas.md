@@ -20,7 +20,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
 ### Funcionalidad adicional (si hay tiempo)
   + buscador de articulos
   + tags
-  + Dinamismo de las categorias
+  + Likes
 
 ### Resuelto
   + Backend pagina favoritos
