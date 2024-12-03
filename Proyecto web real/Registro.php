@@ -53,10 +53,8 @@
     }
 
     //Antes de crear el usuario, realizaremos una consulta para ver si existe un usuario con el mismo correo
-    $consulta_correo = "SELECT * FROM usuarios WHERE email = '$Alta_email' ;";
-    $Resultado_consulta_correo = mysqli_query($conn, $consulta_correo);
+    $Resultado_consulta_correo = $resultado; //asignar a la variable de la consulta anterior
 
-    
     //Compara el numero de filas que ha enviado la bas de datos
     if(mysqli_num_rows($Resultado_consulta_correo) <= 0){
       //En caso de que no exista ninguna contraseña igual en la base de datos, creamos al usuario y redirigimos al usuario al login
@@ -64,7 +62,9 @@
       header("Location: MainPage.php");
     }else{
       //En caso de encontrar algun usuario con el mismo correo se reiniciará la pagina y se mostrará un mensaje para el usuario
-      
+      ?>
+      <script> alert('Este correo ya esta en uso, porfavor prueba otro distinto')</script>
+      <?php
     }  
 
   }else{
