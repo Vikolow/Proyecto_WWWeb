@@ -2,7 +2,9 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
 
 
 ### Funcionalidades a desarollar
+
   + Diagrama de caso de uso (importante) //I
+  + Encapsular la fakin consulta de registro.php //V
   + Agregar control y seguridad a las paginas de funcionalidad de usuario autor y admin-- afinar condicionales que comprueban la sesion el tipo se usuario..etc //M , I
   + limpiar github // Todos pero en clase
   + Testing //I
