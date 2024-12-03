@@ -32,7 +32,10 @@
 
     //Comprueba que el numero de resultados es mayor a 0
     if(mysqli_num_rows($resultado)>0){
-      header("Location: PaginaError.php");  
+       // Si el correo existe, redirige o muestra un mensaje
+       ?>
+       <script>alert('Este correo ya está en uso, por favor prueba con otro.');</script>
+       <?php 
     }else{
       //Crear hash de contraseña 
       $contraseña_hash=password_hash($Alta_contraseña, PASSWORD_ARGON2ID);
@@ -43,7 +46,6 @@
       $stmt_insertar = mysqli_prepare($conn, $Request_Alta);
       mysqli_stmt_bind_param($stmt_insertar, "sssss", $Alta_nombre, $Alta_apellidos, $Alta_email, $contraseña_hash, $Alta_Fecha_Nac);
 
-
     //Comprobacion de ejecucion de consulta encapsulada
     if (mysqli_stmt_execute($stmt_insertar)){
       header("Location: MainPage.php");
@@ -51,22 +53,6 @@
       echo"El Login ha fallado inesperadamente ";
     }
     }
-
-    //Antes de crear el usuario, realizaremos una consulta para ver si existe un usuario con el mismo correo
-    $Resultado_consulta_correo = $resultado; //asignar a la variable de la consulta anterior
-
-    //Compara el numero de filas que ha enviado la bas de datos
-    if(mysqli_num_rows($Resultado_consulta_correo) <= 0){
-      //En caso de que no exista ninguna contraseña igual en la base de datos, creamos al usuario y redirigimos al usuario al login
-      mysqli_query($conn, $Request_Alta);
-      header("Location: MainPage.php");
-    }else{
-      //En caso de encontrar algun usuario con el mismo correo se reiniciará la pagina y se mostrará un mensaje para el usuario
-      ?>
-      <script> alert('Este correo ya esta en uso, porfavor prueba otro distinto')</script>
-      <?php
-    }  
-
   }else{
 
   ?>
