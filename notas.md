@@ -2,16 +2,13 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
 
 
 ### Funcionalidades a desarollar
-
-  + Diagrama de caso de uso (importante) //I
   + Agregar control y seguridad a las paginas de funcionalidad de usuario autor y admi Afinar condicionales que comprueban la sesion el tipo se usuario..etc //M , I
-  + limpiar github // Todos pero en clase
+  + limpiar github // Todos
   + Testing //I
   + Demo y explicacion //I
-  + Pagina recuperar contraseña !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //I
   + Revisar que todas las consultas esten encapsuladas: Falta: select marcelo conocelo categorias
   + ARRGLAR EL FAKIN INPUT DE LA PWD en mainpage
-  + Makear el tema de recuperar pwd , que un usuario introduzca mail
+  + Makear el tema de recuperar pwd , que un usuario introduzca mail //V,todos
   + Actualizar heade de conversor para que sea descriptivo
   + Diseño: Centrar art principal con el resto , añadir header de articulo destacado //I
   + Centrar los enlaces en mainpage
@@ -33,6 +30,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Tema rutas de las imagenes (bd,php) !--> Muy importante //V
   + Panel escribir articulo para usuarios autores //V
   +  + Encapsular la fakin consulta de registro.php //V
+  + Diagrama de caso de uso (importante) //I
 
   + Que el articulo principal sea dinamico con el id de articulo 0
   + Añadir el index con redireccion a mainpage.php //M
