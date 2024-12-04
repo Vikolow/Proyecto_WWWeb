@@ -201,111 +201,165 @@
             echo"</div>";
         echo"</article>";
 
-
-        //Funcion que modifica unas variables que modifican la consulta
-        $categoriaActiva="";
-
-        //Añade categoria1
-        if (isset($_REQUEST['Categoria1'])){
-            $categoriaActiva="WHERE id_categoria = 1";
-        }
-
-        //Añade categoria2
-        if (isset($_REQUEST['Categoria2'])){
-            $categoriaActiva="WHERE id_categoria = 2";
-        }
-
-        //Añade categoria3
-        if (isset($_REQUEST['Categoria3'])){
-            $categoriaActiva="WHERE id_categoria = 3";
-        }
-
-        //Limpiar categorias
-        if (isset($_REQUEST['CategoriaL'])){
-            $categoriaActiva="";
-        }
-
-
         ?>
 
-        <!-- Botones de Categoria -->
-        <div class="categories">
 
-            <form action="" class="form_categorias">
-                <input type="submit" class="Botones_categorias" name="Categoria1" value="Categoria1">
-            </form>
-
-            <form action="" class="form_categorias">
-                <input type="submit" class="Botones_categorias" name="Categoria2" value="Categoria2">
-            </form>
-
-            <form action="" class="form_categorias">
-                <input type="submit" class="Botones_categorias" name="Categoria3" value="Categoria3">
-            </form>
-
-            <form action="" class="form_categorias">
-                <input type="submit" class="Botones_categorias" name="CategoriaL" value="Limpiar Categoria">
-            </form>
-
-        </div>
-
-        <!-- CATALOGO DINAMICO -->
-        <article class="articulosSecundarios">
-
-            <?php
-
-            //Incluimos la pagina de conexión con la base de datos.
-            include("GestionBD/conexion.php");
+        <!-- CATALOGO DINAMICO PADRE-->
+        <div class="agonia">
+    
+            <!-- Botones de Categoria -->
+            <div class="categories">
             
-            //Creamos la sentencia encapsulada
-            $Consulta_Articulos="SELECT * FROM articulos $categoriaActiva ;";
-            $stmt_articulos=mysqli_prepare($conn, $Consulta_Articulos);
-            mysqli_stmt_execute($stmt_articulos);
-            $Resultado_Articulos= mysqli_stmt_get_result($stmt_articulos);
+                <?php
 
-            //Condicional que realiza la función mientras la consulta debuelva un resultado.
-            if(mysqli_num_rows($Resultado_Articulos)>0){
+                //Variables que controla la categoria
+                //$categoriaActiva = "";
+            
+                //Request a la base de datos para sacar los datos de las categorias
+                $Sentencia_categorias = "SELECT * FROM categorias";
+                $Resultado_Sentencia_categorias = mysqli_query($conn, $Sentencia_categorias);
 
-                while($Array_Articulos=mysqli_fetch_assoc($Resultado_Articulos)){
+                //Función para limpiar la categoria activa 
+                if (isset($_POST['CategoriaL'])) {
 
-                    echo "<div class='contenedorImagenTexto'>";
+                    // Limpiar categoría
+                    $_SESSION['categoriaActiva'] = null;  
 
-                    if(!file_exists($Array_Articulos['foto'])){
-                        echo "<img class='imgArticulo' src='img/articulo.jpg' alt=''/>";
-                    }else{
-                        echo "<img class='imgArticulo' src='{$Array_Articulos['foto']}' alt=''/>";
+                } elseif (isset($_POST['categoria'])) {
+
+                    // Actualizar categoría activa desde el POST
+                    $_SESSION['categoriaActiva'] = $_POST['categoria'];
+
+                }
+
+                // Obtener la categoría activa, si está configurada en la sesión
+                $categoriaActiva = isset($_SESSION['categoriaActiva']) ? $_SESSION['categoriaActiva'] : null;
+            
+                // Mostrar botón de "Limpiar Categorías"
+                echo "<form action='' method='post' class='form_categorias'>";
+                if ($categoriaActiva === null) {
+                    echo "<input type='submit' class='Botones_categorias2' name='CategoriaL' value='Limpiar Categorias'>";
+                } else {
+                    echo "<input type='submit' class='Botones_categorias' name='CategoriaL' value='Limpiar Categorias'>";
+                }
+                echo "</form>";
+
+                /*if($Soplón_categoria == 9 ){
+
+                    //Boton de todas las categorias
+                    echo "<form action='' method='post' class='form_categorias'>";
+                        echo "<input type='submit' class='Botones_categorias' name='CategoriaL' value='Limpiar Categorias'>";
+                    echo "</form>";
+
+                }else{
+
+                    //Boton de todas las categorias
+                    echo "<form action='' method='post' class='form_categorias'>";
+                        echo "<input type='submit' class='Botones_categorias2' name='CategoriaL' value='Limpiar Categorias'>";
+                    echo "</form>";
+
+                }
+
+                */
+
+                if (mysqli_num_rows($Resultado_Sentencia_categorias) > 0) {
+
+                    //Crea los botones de categorias de forma dinamica
+                    while ($Array_Sentencia_categorias = mysqli_fetch_assoc($Resultado_Sentencia_categorias)) {
+                        $categoriaID = $Array_Sentencia_categorias['id_categoria'];
+                        $categoriaNombre = $Array_Sentencia_categorias['nombre_categoria'];
+                        
+                        // Mostrar los botones de categorías
+                        echo "<form action='' method='post' class='form_categorias'>";
+                        if ($categoriaActiva == $categoriaNombre) {
+                            echo "<input type='submit' class='Botones_categorias2' name='categoria' value='$categoriaNombre'>";
+                        } else {
+                            echo "<input type='submit' class='Botones_categorias' name='categoria' value='$categoriaNombre'>";
+                        }
+                        echo "</form>";
                     }
-                    echo "<div class='contenedorTexto'>";
-                    echo "<h1> {$Array_Articulos['titulo']} </h1>";
-                    echo "<a> {$Array_Articulos['descripcion']} </a>";
-                    echo "</div>";
-                    echo "<div class='abrazoBotones'>";
+                }
+            
+            ?>
+            
+            </div>
 
-                    if($_SESSION['sesionActiva'] == 0){
-                        echo "<button name='id_art' class='registro invocador' value=''>Leer más</button>";
-                    }else{
-                        echo "<form method='POST' action='articulo.php'>";
-                        echo "<button type='submit' name='id_art' class='registro' value='{$Array_Articulos['id_articulo']}'>Leer más</button>";
-                        echo "</form> ";
-                    }
+            <div class="algo">
 
-                    if(($_SESSION['sesionActiva'] == 1)){
+                
+            <article class="articulosSecundarios">
 
-                        if($_SESSION['clase'] == 2){
-                            echo "<form method='POST' action='MainPage.php'>";
-                            echo "<button type='submit' name='id_elimart' class='registro2' value='{$Array_Articulos['id_articulo']}'>Eliminar</button>";
+                <?php
+
+                //Incluimos la pagina de conexión con la base de datos.
+                include("GestionBD/conexion.php");
+                
+                //Creamos la sentencia encapsulada
+                if($_SESSION['categoriaActiva'] === null){
+
+                    $Consulta_Articulos="SELECT * FROM articulos ;";
+
+                }else{
+
+                    //Creamos una consulta que saca el id de la categoria a partir de su nombre para sacar los articulos que la tengan
+                    $consulta_id_nombre = " SELECT * FROM categorias WHERE nombre_categoria = '$categoriaActiva' ;";
+                    $Resultado_consulta_id_nombre = mysqli_query($conn, $consulta_id_nombre);
+                    $Array_consulta_id_nombre = mysqli_fetch_assoc($Resultado_consulta_id_nombre);
+
+                    $Consulta_Articulos="SELECT * FROM articulos WHERE id_categoria = {$Array_consulta_id_nombre['id_categoria']} ;";
+                    
+                }
+
+                $stmt_articulos=mysqli_prepare($conn, $Consulta_Articulos);
+                mysqli_stmt_execute($stmt_articulos);
+                $Resultado_Articulos= mysqli_stmt_get_result($stmt_articulos);
+
+                //Condicional que realiza la función mientras la consulta debuelva un resultado.
+                if(mysqli_num_rows($Resultado_Articulos)>0){
+
+                    while($Array_Articulos=mysqli_fetch_assoc($Resultado_Articulos)){
+
+                        echo "<div class='contenedorImagenTexto'>";
+
+                        if(!file_exists($Array_Articulos['foto'])){
+                            echo "<img class='imgArticulo' src='img/articulo.jpg' alt=''/>";
+                        }else{
+                            echo "<img class='imgArticulo' src='{$Array_Articulos['foto']}' alt=''/>";
+                        }
+                        echo "<div class='contenedorTexto'>";
+                        echo "<h1> {$Array_Articulos['titulo']} </h1>";
+                        echo "<a> {$Array_Articulos['descripcion']} </a>";
+                        echo "</div>";
+                        echo "<div class='abrazoBotones'>";
+
+                        if($_SESSION['sesionActiva'] == 0){
+                            echo "<button name='id_art' class='registro invocador' value=''>Leer más</button>";
+                        }else{
+                            echo "<form method='POST' action='articulo.php'>";
+                            echo "<button type='submit' name='id_art' class='registro' value='{$Array_Articulos['id_articulo']}'>Leer más</button>";
                             echo "</form> ";
                         }
+
+                        if(($_SESSION['sesionActiva'] == 1)){
+
+                            if($_SESSION['clase'] == 2){
+                                echo "<form method='POST' action='MainPage.php'>";
+                                echo "<button type='submit' name='id_elimart' class='registro2' value='{$Array_Articulos['id_articulo']}'>Eliminar</button>";
+                                echo "</form> ";
+                            }
+                        }
+
+                        echo "</div>";
+                        echo "</div>";
                     }
-
-                    echo "</div>";
-                    echo "</div>";
                 }
-            }
 
-            ?>
+                ?>
 
-        </article>
+            </article>
+            </div>
+            
+        </div>
 
         <!-- Para cuando se invoque el login esta función permite que se vea la contraseña al marcar la casilla -->
         <script>
@@ -318,6 +372,7 @@
         </script>
 
     </main>
+
     <div class="anuncios"></div>
     <footer>
         <p class="copyright">© 2024 Informática para novatos. Todos los derechos reservados.</p>
