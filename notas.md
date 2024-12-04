@@ -2,18 +2,19 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
 
 
 ### Funcionalidades a desarollar
-  back:
+back:
   + Agregar control y seguridad a las paginas de funcionalidad de usuario autor y admi Afinar condicionales que comprueban la sesion el tipo se usuario..etc //M , I
   + Revisar que todas las consultas esten encapsuladas: Falta: select marcelo categorias //V
   + Makear el tema de recuperar pwd , que un usuario introduzca mail //V,todos
-    
-    front:
+
+front:
+
   +Centrar art principal con el resto , añadir header de articulo destacado //I
   + Centrar los enlaces en mainpage
   + Redimension de las imagenes
   + Actualizar heade de conversor para que sea descriptivo
 
-    gen:
+gen:
   + limpiar github // Todos
   + Testing //I
   + Demo y explicacion //I
