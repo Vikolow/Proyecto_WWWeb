@@ -8,7 +8,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Makear el tema de recuperar pwd , que un usuario introduzca mail //V,todos
 
 *front*:
-  +Centrar art principal con el resto , añadir header de articulo destacado //I
+  + Centrar art principal con el resto , añadir header de articulo destacado //I
   + Centrar los enlaces en mainpage
   + Redimension de las imagenes
   + Actualizar heade de conversor para que sea descriptivo
