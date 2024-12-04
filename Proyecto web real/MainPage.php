@@ -211,9 +211,6 @@
             <div class="categories">
             
                 <?php
-
-                //Variables que controla la categoria
-                //$categoriaActiva = "";
             
                 //Request a la base de datos para sacar los datos de las categorias
                 $Sentencia_categorias = "SELECT * FROM categorias";
@@ -225,11 +222,15 @@
                     // Limpiar categoría
                     $_SESSION['categoriaActiva'] = null;  
 
-                } elseif (isset($_POST['categoria'])) {
+                }elseif (isset($_POST['categoria'])) {
 
                     // Actualizar categoría activa desde el POST
                     $_SESSION['categoriaActiva'] = $_POST['categoria'];
 
+                }else {
+
+                    // Actualizar categoría activa desde el POST
+                    $_SESSION['categoriaActiva'] = null;
                 }
 
                 // Obtener la categoría activa, si está configurada en la sesión
@@ -243,24 +244,6 @@
                     echo "<input type='submit' class='Botones_categorias' name='CategoriaL' value='Limpiar Categorias'>";
                 }
                 echo "</form>";
-
-                /*if($Soplón_categoria == 9 ){
-
-                    //Boton de todas las categorias
-                    echo "<form action='' method='post' class='form_categorias'>";
-                        echo "<input type='submit' class='Botones_categorias' name='CategoriaL' value='Limpiar Categorias'>";
-                    echo "</form>";
-
-                }else{
-
-                    //Boton de todas las categorias
-                    echo "<form action='' method='post' class='form_categorias'>";
-                        echo "<input type='submit' class='Botones_categorias2' name='CategoriaL' value='Limpiar Categorias'>";
-                    echo "</form>";
-
-                }
-
-                */
 
                 if (mysqli_num_rows($Resultado_Sentencia_categorias) > 0) {
 
