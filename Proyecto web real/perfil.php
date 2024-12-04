@@ -9,6 +9,18 @@
 
 <body class="body_herramientas">
 
+        <?php
+        //Iniciamos la sesión
+        session_start();
+
+        // Si no hay ninguna sesión activa redirije también a la pagina de error
+        if (!isset($_SESSION['id_usuario']) || $_SESSION['id_usuario'] == "") {
+            
+            header("Location: error.html");
+            exit;
+        }
+        ?>
+
     <header class="headermain">
         <a href="MainPage.php" class="btn-back">Volver</a>
         <div class="logo">
@@ -49,9 +61,6 @@
                 //Incluimos la función que realiza la conexión con la base de datos
                 include("GestionBD/conexion.php");
 
-                //Iniciamos otra vez la sesión
-                session_start();
-
                  //Consulta general encapsulada que saca los datos del usuario
                  $consulta_datos = "SELECT * FROM usuarios WHERE id_usuario = ?";
                  $stmt = mysqli_prepare($conn, $consulta_datos);
@@ -91,7 +100,7 @@
             <?php
 
             //En caso de que el usuario sea administrador
-            if($Resultado_Array['id_rol'] == 2){
+            if($Resultado_Array['id_rol'] == 2 || $Resultado_Array['id_rol'] == 3){
             echo"<a href='escribirArticulo.php'>";
                 echo"<button class='botonPerfil'> Crear artículo </button>";
             echo"</a>";
