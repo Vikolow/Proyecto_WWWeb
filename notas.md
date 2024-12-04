@@ -8,8 +8,6 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   + Makear el tema de recuperar pwd , que un usuario introduzca mail //V,todos
 
 *front*:
-  + Centrar art principal con el resto , añadir header de articulo destacado //I
-  + Centrar los enlaces en mainpage
   + Redimension de las imagenes
 
 *gen*:
@@ -37,6 +35,7 @@ https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
   +  + Encapsular la fakin consulta de registro.php //V
   + Diagrama de caso de uso (importante) //I
   + Actualizar heade de conversor para que sea descriptivo //I
+  + Centrar art principal con el resto , añadir header de articulo destacado //I
 
   + Que el articulo principal sea dinamico con el id de articulo 0
   + Añadir el index con redireccion a mainpage.php //M
