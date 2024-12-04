@@ -104,13 +104,16 @@ margin-left: 2%;
 
 .articulosSecundarios {
   display: flex;
-  justify-content: center;
+  width: 90%;
+  background-color: rgb(155, 199, 219);
+  justify-content: flex-start;
   flex-wrap: wrap;
+  border-radius: 3px;
 }
 
 .contenedorImagenTexto {
   width: 20%;
-  margin-left: 2.5%;
+  margin: 2.5%;
   margin-bottom: 25px;
 }
 
@@ -128,7 +131,7 @@ margin-left: 2%;
 
 .imgArticuloPrincipal{
   width:30%;
-  margin-left: 6%;
+  margin-left: 3%;
   margin-top: 1%;
   border-radius: 2%;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
@@ -825,9 +828,10 @@ margin-left: 2%;
 
   .categories {           /*ACTUALIZAR  HASTA EL HOVER */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 15px;
-    margin: 20px;
+    margin-top: 20px;
+    margin-left: 7%;
   }
   
   .Botones_categorias {
@@ -835,7 +839,7 @@ margin-left: 2%;
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 25px;
+    border-radius: 5px 5px 0px 0px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -997,5 +1001,27 @@ margin-right: 5px;
 .solicitudes{
   display: flex;
   align-items: center;
+}
+
+.papaContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Botones_categorias2 {
+  background: rgb(155, 199, 219);
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px 5px 0px 0px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.algo{
+  display: flex;
+  justify-content: center;
 }
 
