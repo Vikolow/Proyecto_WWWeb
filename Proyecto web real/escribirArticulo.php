@@ -23,11 +23,18 @@
         session_start();
         include("GestionBD/conexion.php");
 
+        // Si no hay ninguna sesión activa redirije también a la pagina de error
+        if (!isset($_SESSION['id_usuario']) || $_SESSION['id_usuario'] == "") {
+            
+            header("Location: error.html");
+            exit;
+        }
+
         // Comprobar que el usuario esté autenticado y tenga el rol adecuado
-        // if (!isset($_SESSION['id_usuario']) || $_SESSION['rol'] != 'autor') {
-        //     header("Location: login.php");
-        //     exit;
-        // }
+        if ($_SESSION['id_rol'] != 2 && $_SESSION['id_rol'] != 3){
+            header("Location: error.html");
+            exit;
+        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Recoge los datos del formulario
