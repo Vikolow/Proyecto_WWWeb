@@ -30,7 +30,7 @@
         </div>
 
         <!-- Formulario que llama a la función de cerrar sesión -->
-        <form action="">
+        <form action="" method="post">
             <input type="submit" class="btn-back" name="desinvocador" value="Logout">
         </form>
 
@@ -40,7 +40,6 @@
             if (isset($_REQUEST['desinvocador'])){
                 session_destroy();
                 $_SESSION['sesionActiva'] = 0;
-                header("Location: Mainpage.php");
             }
 
         ?>
@@ -105,14 +104,17 @@
                 echo"<button class='botonPerfil'> Crear artículo </button>";
             echo"</a>";
             }
-            
+
+            //Formulario que llama a la funcion de pedir autor
+            if($Resultado_Array['id_rol'] == 1){
+
+            echo"<form method='POST' action=''>";
+                echo"<button type='submit' name='botonPerfil' class='botonPerfil' value=''>Pedir autor</button>";
+            echo"</form>";
+
+            }
 
             ?>
-
-            <!-- Formulario que llama a la funcion de pedir autor -->
-            <form method='POST' action=''>
-                <button type='submit' name='botonPerfil' class='botonPerfil' value=''>Pedir autor</button>
-            </form>
 
             <!-- Función que llama a la base de datos para enviar una solicitud de admin -->
             <?php
@@ -120,15 +122,8 @@
                 //Al pulsar el boton de pedir autor
                 if (isset($_REQUEST['botonPerfil'])){
 
-                    //En caso de que el usuario ya tenga privilegios de administrador envia un mensaje
-                    if($Resultado_Array['id_rol'] == 2 || $Resultado_Array['id_rol'] == 3){
-
-                        ?>
-                        <script> alert('Error: Ya posees el rol de autor o superior')</script>
-                        <?php
-
-                        //En caso de que el usuario no tenga más tokens de solicitud:
-                    }else if($Resultado_Array['numero_peticiones_restante'] < 1){
+                    //En caso de que el usuario no tenga más tokens de solicitud:
+                    if($Resultado_Array['numero_peticiones_restante'] < 1){
 
                         ?>
                         <script> alert('Error: No te quedan tokens para realizar la petición')</script>
@@ -143,21 +138,21 @@
 
                     }else{
 
-                         //Creamos la solicitud que activa una petición y resta un token
-                         $consulta_actualizar = "UPDATE usuarios SET peticion_activa = 1, numero_peticiones_restante = numero_peticiones_restante - 1 WHERE id_usuario = ?";
-                         $stmt = mysqli_prepare($conn, $consulta_actualizar);
-                         mysqli_stmt_bind_param($stmt, "i", $_SESSION['id_usuario']);
+                        //Creamos la solicitud que activa una petición y resta un token
+                        $consulta_actualizar = "UPDATE usuarios SET peticion_activa = 1, numero_peticiones_restante = numero_peticiones_restante - 1 WHERE id_usuario = ?";
+                        $stmt = mysqli_prepare($conn, $consulta_actualizar);
+                        mysqli_stmt_bind_param($stmt, "i", $_SESSION['id_usuario']);
                          
-                         // Ejecutamos la consulta y verificamos el resultado
-                         if (mysqli_stmt_execute($stmt)) {
-                             header("Location: perfil.php");
-                             exit();
-                         } else {
-                             echo "<p>Error al enviar la solicitud.</p>";
-                         }
+                        // Ejecutamos la consulta y verificamos el resultado
+                        if (mysqli_stmt_execute($stmt)) {
+                            header("Location: perfil.php");
+                            exit();
+                        } else {
+                            echo "<p>Error al enviar la solicitud.</p>";
+                        }
                      
-                         // Liberamos el statement
-                         mysqli_stmt_close($stmt);
+                        // Liberamos el statement
+                        mysqli_stmt_close($stmt);
                     }
                 }
             ?>
