@@ -1,5 +1,6 @@
 https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
 
+Añadir el typepassword a registro.php campo de respuestta de seguridasd , estudiar si se puede hacer con la misma funcion de js el mostrar u ocultar respuesta de seguridad
 
 ### Funcionalidades a desarollar
 *back*:
