@@ -1,7 +1,7 @@
 https://www.simplilearn.com/tutorials/php-tutorial/session-in-php
 
 Añadir el typepassword a registro.php campo de respuestta de seguridasd , estudiar si se puede hacer con la misma funcion de js el mostrar u ocultar respuesta de seguridad
-
+A ACTUALIZAR VICTOR: REGISTRO , RECCONTRA , PROCESAR
 ### Funcionalidades a desarollar
 *back*:
   + Agregar control y seguridad a las paginas de funcionalidad de usuario autor y admi Afinar condicionales que comprueban la sesion el tipo se usuario..etc //M , I
