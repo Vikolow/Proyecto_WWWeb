@@ -5,7 +5,6 @@ A ACTUALIZAR VICTOR: REGISTRO , RECCONTRA , PROCESAR
 ### Funcionalidades a desarollar
 *back*:
   + Agregar control y seguridad a las paginas de funcionalidad de usuario autor y admi Afinar condicionales que comprueban la sesion el tipo se usuario..etc //M , I
-  + Revisar que todas las consultas esten encapsuladas: Falta: select marcelo categorias //V
 
 *front*:
   + Redimension de las imagenes
