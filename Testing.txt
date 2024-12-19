@@ -1,7 +1,0 @@
-Cuando vamos a herramientas, es como si no hubiese sesión iniciada, y si le das al perfil, te vas a la pantalla de registrarse
-
-Cuando estás en la pantalla del usuario y le das a logout, vuelves a la página principal con la sesión aún iniciada
-
-Botón de publicar artículo muy pobre (mejorarlo visualmente)
-
-Hacer que las imágenes se redimensionen siempre al mismo tamaño para evitar tamaños distintos entre portadas de artículos
